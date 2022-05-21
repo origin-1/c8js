@@ -1,0 +1,9 @@
+.*
+!.c8rc*
+!.git*
+!.nycrc*
+!/.npmrc
+/*.cpuprofile
+/coverage/
+/node_modules/
+/tmp/

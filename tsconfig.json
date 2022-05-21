@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "exactOptionalPropertyTypes": true,
+        "strict": true
+    }
+}

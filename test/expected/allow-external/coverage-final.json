@@ -1,0 +1,110 @@
+{
+  "test/fixtures/c8/multidir1/file1.js": {
+    "path": "test/fixtures/c8/multidir1/file1.js",
+    "all": false,
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 17
+        }
+      }
+    },
+    "s": {
+      "0": 1
+    },
+    "branchMap": {
+      "0": {
+        "type": "branch",
+        "line": 1,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        "locations": [
+          {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 17
+            }
+          }
+        ]
+      }
+    },
+    "b": {
+      "0": [
+        1
+      ]
+    },
+    "fnMap": {},
+    "f": {}
+  },
+  "test/fixtures/c8/report/allowExternal.js": {
+    "path": "test/fixtures/c8/report/allowExternal.js",
+    "all": false,
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 29
+        }
+      }
+    },
+    "s": {
+      "0": 1
+    },
+    "branchMap": {
+      "0": {
+        "type": "branch",
+        "line": 1,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        "locations": [
+          {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 29
+            }
+          }
+        ]
+      }
+    },
+    "b": {
+      "0": [
+        1
+      ]
+    },
+    "fnMap": {},
+    "f": {}
+  }
+}

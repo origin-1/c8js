@@ -1,0 +1,15 @@
+{
+  "a": true,
+  "cwd": "/foo/bar",
+  "omit-relative": false,
+  "reports-dir": "xyz",
+  "src": [
+    "a",
+    "b",
+    "c"
+  ],
+  "version": true,
+  "watermarks": {
+    "branches": [10, 90]
+  }
+}

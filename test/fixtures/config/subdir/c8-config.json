@@ -1,0 +1,7 @@
+{
+  "extends": ".c8rc",
+  "omitRelative": true,
+  "watermarks": {
+    "lines": [20, 80]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "c8js",
+  "version": "0.0.0",
+  "description": "A modern, asynchronous Node.js API for c8",
+  "keywords": [
+    "api",
+    "c8",
+    "coverage",
+    "nodejs",
+    "v8"
+  ],
+  "homepage": "https://github.com/fasttime/c8js#readme",
+  "license": "ISC",
+  "author": "Francesco Trotta <ft@fasttime.org> (https://github.com/fasttime)",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fasttime/c8js.git"
+  },
+  "scripts": {
+    "build": "npm install && npm run clean && npm run lint && npm run coverage",
+    "clean": "node dev/clean",
+    "coverage": "node dev/coverage",
+    "lint": "node dev/lint",
+    "test": "mocha --check-leaks --timeout=10000 ./test/*.spec.js"
+  },
+  "dependencies": {
+    "@types/istanbul-lib-coverage": "2",
+    "@types/node": ">=14",
+    "c8": "7",
+    "signal-exit": "3",
+    "which": "2"
+  },
+  "devDependencies": {
+    "@fasttime/lint": "latest",
+    "mocha": "latest",
+    "ts-node": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "exports": {
+    ".": "./lib/c8js.js",
+    "./package.json": "./package.json"
+  },
+  "type": "module",
+  "types": "lib/c8js.d.ts"
+}
