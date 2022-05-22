@@ -8,6 +8,13 @@ import                                              'node';
 interface CommonOptions
 {
     /**
+     * Path to c8 JSON configuration file.
+     * If not provided, c8js searches for files named `.c8rc`, `.c8rc.json`, `.nycrc`, or
+     * `.nycrc.json`, starting from `cwd` and walking up the filesystem tree.
+     */
+    c8Config?:          string | undefined;
+
+    /**
      * Current working directory of the subprocess, project root of reports and base directory for
      * all relative paths. Must be an absolute path.
      * @default process.cwd
