@@ -1,4 +1,4 @@
-# c8js
+# c8js · [![npm version][npm badge]][npm url]
 
 A modern, asynchronous Node.js API for [c8](https://github.com/bcoe/c8).
 
@@ -75,3 +75,6 @@ async function runTest()
     await c8js(process.execPath, ['--test']);
 }
 ```
+
+[npm badge]: https://badge.fury.io/js/c8js.svg
+[npm url]: https://www.npmjs.com/package/c8js
