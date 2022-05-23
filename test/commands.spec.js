@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-import { strict as assert }                 from 'assert';
-import { commands }                         from 'c8js';
+import { strict as assert } from 'assert';
+import { commands }         from 'c8js';
 
 describe
 (

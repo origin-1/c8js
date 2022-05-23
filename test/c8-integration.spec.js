@@ -185,7 +185,7 @@ describe
             {
                 // Here we nest this test into the report directory making the multidir directories
                 // outside of `cwd`.
-                // If the option `allowExternal` is not set, the multidir files will now show up in
+                // If the option `allowExternal` is not set, the multidir files will not show up in
                 // the file report, even though they were required in.
                 const testName = 'allow-external';
                 const reportsDirectory = joinPath('tmp', testName);
@@ -212,9 +212,9 @@ describe
             {
                 // Here we nest this test into the report directory making the multidir directories
                 // outside of `cwd`.
-                // Note that the target `srcOverride` does not require fields from these directories
-                // but we want them initialized to 0 via `all`. As such we `allowExternal` and
-                // provide multiple `src` patterns to override `cwd`.
+                // Note that the target `srcOverride.js` does not require fields from these
+                // directories but we want them initialized to 0 via `all`.
+                // As such we `allowExternal` and provide multiple `src` patterns to override `cwd`.
                 const testName = 'src';
                 const reportsDirectory = joinPath('tmp', testName);
                 const result =
@@ -1005,7 +1005,7 @@ describe
                             reportsDirectory,
                             silent: true,
                         };
-                        // generate v8 output
+                        // generate V8 output
                         await c8js
                         (
                             joinPath('test/fixtures/c8/all/vanilla/main.js'),

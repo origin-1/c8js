@@ -11,12 +11,14 @@ interface CommonOptions
      * Path to c8 JSON configuration file.
      * If not provided, c8js searches for files named `.c8rc`, `.c8rc.json`, `.nycrc`, or
      * `.nycrc.json`, starting from `cwd` and walking up the filesystem tree.
+     * This setting is ignored if option `useC8Config` is set to `false`.
      */
     c8Config?:          string | undefined;
 
     /**
      * Current working directory of the subprocess, project root of reports and base directory for
-     * all relative paths. Must be an absolute path.
+     * all relative paths.
+     * Must be an absolute path.
      * @default process.cwd
      */
     cwd?:               string | URL | undefined;
@@ -35,6 +37,13 @@ interface CommonOptions
      * Defaults to a subdirectory named `'tmp'` in the directory specified by `reportsDirectory`.
      */
     tempDirectory?:     string | undefined;
+
+    /**
+     * If `false`, c8js will not load c8 options from a `c8` section in `package.json`, or from a
+     * JSON configuration file on disk.
+     * @default true
+     */
+    useC8Config?:       boolean | undefined;
 }
 
 type ReportOptions = ConstructorParameters<typeof Report>[0];

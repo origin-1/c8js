@@ -9,6 +9,7 @@ await c8js
     {
         cwd: new URL('..', import.meta.url),
         reporter: ['html', 'text-summary'],
+        useC8Config: false,
         watermarks:
         {
             branches:   [90, 100],

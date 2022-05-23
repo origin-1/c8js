@@ -67,6 +67,45 @@ describe
             },
         );
 
+        describe
+        (
+            'ignores a configuration file',
+            () =>
+            {
+                it
+                (
+                    'located by `cwd`',
+                    async () =>
+                    {
+                        const cwd = joinPath('test/fixtures/config');
+                        const config = await resolveOptions({ cwd, useC8Config: false });
+                        assert.equal(config.excludeAfterRemap, false);
+                        assert.equal(config.omitRelative, true);
+                        assert.equal(config.reportsDirectory, join(cwd, 'coverage'));
+                        assert.equal(config.src, cwd);
+                        assert.equal(config.watermarks, undefined);
+                    },
+                );
+
+                it
+                (
+                    'specified by `c8Config`',
+                    async () =>
+                    {
+                        const cwd = joinPath('test/fixtures/config');
+                        const config =
+                        await resolveOptions
+                        ({ c8Config: 'subdir/c8-config.json', cwd, useC8Config: false });
+                        assert.equal(config.excludeAfterRemap, false);
+                        assert.equal(config.omitRelative, true);
+                        assert.equal(config.reportsDirectory, join(cwd, 'coverage'));
+                        assert.equal(config.src, cwd);
+                        assert.equal(config.watermarks, undefined);
+                    },
+                );
+            },
+        );
+
         it
         (
             'throws an error if the configuration file is invalid',
