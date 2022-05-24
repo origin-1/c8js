@@ -5,7 +5,7 @@ import { joinPath }         from './utils.js';
 import { strict as assert } from 'assert';
 import { tmpdir }           from 'os';
 import { join }             from 'path';
-import { pathToFileURL } from 'url';
+import { pathToFileURL }    from 'url';
 
 describe
 (
@@ -164,6 +164,24 @@ describe
             async () =>
             {
                 await assert.rejects(resolveOptions({ cwd: '.' }), { constructor: Error });
+            },
+        );
+
+        it
+        (
+            'does not cache c8 options in package.json',
+            async () =>
+            {
+                const [actualA, actualB] =
+                await Promise.all
+                (
+                    [
+                        resolveOptions({ cwd: joinPath('test/fixtures/config/packages/a') }),
+                        resolveOptions({ cwd: joinPath('test/fixtures/config/packages/b') }),
+                    ],
+                );
+                assert.equal(actualA.exclude, 'a');
+                assert.equal(actualB.exclude, 'b');
             },
         );
     },
