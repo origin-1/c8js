@@ -46,20 +46,55 @@ interface CommonOptions
     useC8Config?:       boolean | undefined;
 }
 
-type ReportOptions = ConstructorParameters<typeof Report>[0];
+type InheritableC8Options =
+Undefinedable<Omit<ConstructorParameters<typeof Report>[0], 'reporter' | 'src' | 'watermarks'>>;
 
-type Undefinedable<Type> = { [Key in keyof Type]: Type[Key] | undefined };
+type Undefinedable<Type> = { [Key in keyof Type]: Type[Key] | undefined; };
 
-type Watermark = [number, number];
+/** Thresholds for low and high code coverage watermarks. */
+type Watermark = [low: number, high: number];
 
+/**
+ * Thresholds for low and high code coverage watermarks for branches, functions, lines and
+ * statements.
+ */
 interface Watermarks
 {
+    /** Thresholds for branches. */
     branches?:      Watermark | undefined;
+
+    /** Thresholds for functions. */
     functions?:     Watermark | undefined;
+
+    /** Thresholds for lines. */
     lines?:         Watermark | undefined;
+
+    /** Thresholds for statements. */
     statements?:    Watermark | undefined;
 }
 
+/**
+ * Executes a command, generates a coverage report and optionally checks that code coverage is
+ * within the specified thresholds.
+ *
+ * @param command
+ * The command to run.
+ * This can be a binary executable or a Node.js module.
+ * If a promise is specified, the resolved value will be used.
+ *
+ * @param args
+ * A list of arguments passed to the command.
+ *
+ * @param options
+ * Options for the function.
+ *
+ * @returns
+ * A promise that settles after the command has terminated.
+ * The promise will resolve with an object similar to the return value of
+ * [`child_process.spawnSync`](
+ * https://nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options) with an
+ * additional property holding the coverage map.
+ */
 declare const c8js:
 {
     (command: string | Promise<string>, options?: c8js.Options):
@@ -86,15 +121,33 @@ declare namespace c8js
     }
 }
 
+/**
+ * Checks that code coverage is within the specified thresholds.
+ *
+ * @param options
+ * Options for the function.
+ *
+ * @returns
+ * A promise that resolves if code coverage is within the thresholds, and rejects otherwise, or if
+ * an error occurs.
+ */
 declare function checkCoverage
 (options?: checkCoverage.Options & Partial<c8js.Options>):
 Promise<void>;
 
 declare namespace checkCoverage
 {
-    interface Options
-    extends CommonOptions, Undefinedable<Omit<ReportOptions, 'reporter' | 'src' | 'watermarks'>>
+    interface Options extends CommonOptions, InheritableC8Options
     {
+        /**
+         * If `true`, all files specified with the options `src`, `include`, `exclude` and
+         * `extension` will be loaded into the report.
+         * If any of those files remain uncovered, they will be factored into the report with a
+         * default of 0% coverage.
+         * @default false
+         */
+        all?:                   boolean | undefined;
+
         /**
          * Fails if coverage falls below 100%.
          * @default false
@@ -109,10 +162,22 @@ declare namespace checkCoverage
         branches?:              number | undefined;
 
         /**
+         * Glob patterns matching files that should be excluded from coverage.
+         * @default await import('@istanbuljs/schema/default-exclude.js')
+         */
+        exclude?:               string | string[] | undefined;
+
+        /**
          * Whether or not to exclude all `'node_module'` folders.
          * @default true
          */
         excludeNodeModules?:    boolean | undefined;
+
+        /**
+         * Only files matching these extensions will be included in coverage.
+         * @default ['.js', '.cjs', '.mjs', '.ts', '.tsx', '.jsx']
+         */
+        extension?:             string | string[] | undefined;
 
         /**
          * Percentage of functions that must be covered for the check to pass.
@@ -120,6 +185,13 @@ declare namespace checkCoverage
          * @default 0
          */
         functions?:             number | undefined;
+
+        /**
+         * Glob patterns matching files that should be included in coverage.
+         * An empty array matches all files.
+         * @default []
+         */
+        include?:               string | string[] | undefined;
 
         /**
          * Percentage of lines that must be covered for the check to pass.
@@ -150,11 +222,17 @@ declare namespace checkCoverage
     }
 }
 
+/** Common commands for c8js. */
 declare const commands:
 {
-    get node(): Promise<string>;
-    get npm():  Promise<string>;
-    get npx():  Promise<string>;
+    /** A new promise that resolves to the path of node. */
+    readonly node:  Promise<string>;
+
+    /** A new promise that resolves to the path of npm. */
+    readonly npm:   Promise<string>;
+
+    /** A new promise that resolves to the path of npx. */
+    readonly npx:   Promise<string>;
 };
 
 declare function exec
@@ -162,15 +240,35 @@ declare function exec
     command: string | Promise<string>,
     options?: exec.Options & Partial<c8js.Options>,
 ):
-Promise<SpawnSyncReturns<string | Buffer>>;
+Promise<exec.Result>;
 
+/**
+ * Executes a command, ensuring that temporary code coverage data is created.
+ *
+ * @param command
+ * The command to run.
+ * This can be a binary executable or a Node.js module.
+ * If a promise is specified, the resolved value will be used.
+ *
+ * @param args
+ * A list of arguments passed to the command.
+ *
+ * @param options
+ * Options for the function.
+ *
+ * @returns
+ * A promise that settles after the command has terminated.
+ * The promise will resolve with an object similar to the return value of
+ * [`child_process.spawnSync`](
+ * https://nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options).
+ */
 declare function exec
 (
     command: string | Promise<string>,
     args?: readonly string[],
     options?: exec.Options & Partial<c8js.Options>,
 ):
-Promise<SpawnSyncReturns<string | Buffer>>;
+Promise<exec.Result>;
 
 declare namespace exec
 {
@@ -241,8 +339,22 @@ declare namespace exec
          */
         uid?:           number | undefined;
     }
+
+    interface Result extends SpawnSyncReturns<string | Buffer>
+    { }
 }
 
+/**
+ * Generates a coverage report and optionally checks that code coverage is
+ * within the specified thresholds.
+ *
+ * @param options
+ * Options for the function.
+ *
+ * @returns
+ * A promise that resolves with a coverage map, and rejects if code coverage is not within the
+ * thresholds, or if an error occurs.
+ */
 declare function report(options?: report.Options & Partial<c8js.Options>): Promise<CoverageMap>;
 
 declare namespace report
@@ -269,14 +381,13 @@ declare namespace report
          */
         skipFull?:      boolean | undefined;
 
-        /**
-         * Thresholds for high and low code coverage watermarks, exposed by some reporters.
-         */
+        /** Thresholds for low and high code coverage watermarks, exposed by some reporters. */
         watermarks?:    Watermarks | undefined;
     }
 }
 
+/** The version string of c8js. */
 declare const version: string;
 
 export { c8js as default, checkCoverage, commands, exec, report, version };
-export type { CoverageMap, Watermark, Watermarks };
+export type { Watermark, Watermarks };

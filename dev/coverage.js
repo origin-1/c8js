@@ -7,8 +7,10 @@ await c8js
     'node_modules/mocha/bin/mocha.js',
     ['--check-leaks', '--timeout=10000', 'test/*.spec.js'],
     {
+        all: true,
         cwd: new URL('..', import.meta.url),
         reporter: ['html', 'text-summary'],
+        src: 'lib',
         useC8Config: false,
         watermarks:
         {

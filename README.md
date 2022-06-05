@@ -1,6 +1,8 @@
-# c8js · [![npm version][npm badge]][npm url]
+# c8js
 
 A modern, asynchronous Node.js API for [c8](https://github.com/bcoe/c8).
+
+[![npm version][npm badge]][npm url]
 
 c8 leverages Node.js built-in [V8 JavaScript code coverage](https://v8.dev/blog/javascript-code-coverage) to produce [Istanbul](https://istanbul.js.org/)-compatible reports.
 
@@ -14,7 +16,11 @@ Use [`npm install`](https://docs.npmjs.com/cli/install):
 
 `npm i -D c8js`
 
-## Example Usages
+## Usage
+
+See the [**API documentation**](https://origin-1.github.io/c8js/modules).
+
+## Examples
 
 ### Run Mocha
 

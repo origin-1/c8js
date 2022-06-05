@@ -2,5 +2,12 @@
     "compilerOptions": {
         "exactOptionalPropertyTypes": true,
         "strict": true
-    }
+    },
+    "include": [
+        "lib",
+        "test"
+    ],
+    "exclude": [
+        "test/fixtures"
+    ]
 }
