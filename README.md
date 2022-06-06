@@ -82,5 +82,9 @@ async function runTest()
 }
 ```
 
+## Compatibility
+
+c8js requires Node.js 14 or later.
+
 [npm badge]: https://badge.fury.io/js/c8js.svg
 [npm url]: https://www.npmjs.com/package/c8js
