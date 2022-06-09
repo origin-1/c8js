@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
-import fgExecAsync,  { SIGNALS }    from '../lib/foreground-exec-async.js';
-import { joinPath }                 from './utils.js';
-import { strict as assert }         from 'assert';
+import fgExecAsync, { SIGNALS } from '../lib/foreground-exec-async.js';
+import { joinPath }             from './utils.js';
+import { strict as assert }     from 'assert';
 
 function isKiller(listener)
 {
@@ -48,7 +48,7 @@ describe
                         { failFast: true },
                         { __proto__: process, addListener, platform },
                     );
-                    if  (isKiller(childHangup))
+                    if (isKiller(childHangup))
                     {
                         await assert.rejects
                         (

@@ -4,6 +4,12 @@ import { createTempDirectory, joinPath }            from './utils.js';
 import { strict as assert }                         from 'assert';
 import c8js, { version as c8js_version, commands }  from 'c8js';
 
+function assertStackTraceConnected(stack)
+{
+    assert(/\n    at (?:async )?doExec \(/.test(stack));
+    assert(stack.includes(`(${import.meta.url}:`));
+}
+
 describe
 (
     'function `exec`',
@@ -31,7 +37,12 @@ describe
                         joinPath('test/fixtures/not-found'),
                         { silent: true, tempDirectory },
                     ),
-                    ({ code }) => code === 'ENOENT',
+                    ({ code, stack }) =>
+                    {
+                        assert(code === 'ENOENT');
+                        assertStackTraceConnected(stack);
+                        return true;
+                    },
                 );
             },
         );
@@ -48,7 +59,12 @@ describe
                         joinPath('test/fixtures'),
                         { silent: true, tempDirectory },
                     ),
-                    ({ code }) => code === 'EACCES' || code === 'ENOENT',
+                    ({ code, stack }) =>
+                    {
+                        assert(code === 'EACCES' || code === 'ENOENT');
+                        assertStackTraceConnected(stack);
+                        return true;
+                    },
                 );
             },
         );
@@ -65,7 +81,12 @@ describe
                         joinPath('test/fixtures/empty'),
                         { silent: true, tempDirectory },
                     ),
-                    ({ code }) => code === 'EACCES' || code === 'ENOENT',
+                    ({ code, stack }) =>
+                    {
+                        assert(code === 'EACCES' || code === 'ENOENT');
+                        assertStackTraceConnected(stack);
+                        return true;
+                    },
                 );
             },
         );
@@ -88,7 +109,15 @@ describe
                                 ['not-found'],
                                 { cwd: joinPath('test/fixtures'), silent: true, tempDirectory },
                             ),
-                            { code: 1, constructor: Error, killed: false, signal: null },
+                            ({ code, constructor, killed, signal, stack }) =>
+                            {
+                                assert.equal(code, 1);
+                                assert.equal(constructor, Error);
+                                assert.equal(killed, false);
+                                assert.equal(signal, null);
+                                assertStackTraceConnected(stack);
+                                return true;
+                            },
                         );
                     },
                 );
@@ -118,6 +147,7 @@ describe
                         assert.equal(result.output[1], '');
                         assert.equal(typeof result.output[2], 'string');
                         assert(result.error instanceof Error);
+                        assertStackTraceConnected(result.error.stack);
                         assert.equal(result.stdout, '');
                         assert.equal(typeof result.stderr, 'string');
                     },
@@ -192,6 +222,7 @@ describe
                     assert.deepEqual(actual, expected);
                     assert.equal(error.code, 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER');
                     assert.equal(error.constructor, RangeError);
+                    assertStackTraceConnected(error.stack);
                 }
 
                 it
@@ -254,25 +285,26 @@ describe
                     'times out',
                     async () =>
                     {
-                        const result =
+                        const { error, output, signal, status, stderr, stdout } =
                         await c8js.exec
                         (
                             joinPath('test/fixtures/timeout-test.js'),
                             { failFast: false, silent: true, tempDirectory, timeout: 1 },
                         );
-                        assert.equal(result.status, null);
-                        assert.equal(result.signal, 'SIGTERM');
-                        assert(Array.isArray(result.output));
-                        assert.equal(result.output.length, 3);
-                        assert.equal(result.output[0], null);
-                        assert.deepEqual(result.output[1], '');
-                        assert.deepEqual(result.output[2], '');
-                        assert(result.error instanceof Error);
-                        assert.equal(result.error.code, null);
-                        assert.equal(result.error.killed, true);
-                        assert.equal(result.error.signal, 'SIGTERM');
-                        assert.deepEqual(result.stdout, '');
-                        assert.deepEqual(result.stderr, '');
+                        assert.equal(status, null);
+                        assert.equal(signal, 'SIGTERM');
+                        assert(Array.isArray(output));
+                        assert.equal(output.length, 3);
+                        assert.equal(output[0], null);
+                        assert.equal(output[1], '');
+                        assert.equal(output[2], '');
+                        assert(error instanceof Error);
+                        assert.equal(error.code, null);
+                        assert.equal(error.killed, true);
+                        assert.equal(error.signal, 'SIGTERM');
+                        assertStackTraceConnected(error.stack);
+                        assert.equal(stdout, '');
+                        assert.equal(stderr, '');
                     },
                 );
 
@@ -352,7 +384,12 @@ describe
                         joinPath('test/fixtures/noop.js'),
                         { gid: 'foo', tempDirectory },
                     ),
-                    { code: 'ERR_INVALID_ARG_TYPE' },
+                    ({ code, stack }) =>
+                    {
+                        assert.equal(code, 'ERR_INVALID_ARG_TYPE');
+                        assertStackTraceConnected(stack);
+                        return true;
+                    },
                 );
             },
         );
@@ -369,7 +406,12 @@ describe
                         joinPath('test/fixtures/noop.js'),
                         { uid: 'foo', tempDirectory },
                     ),
-                    { code: 'ERR_INVALID_ARG_TYPE' },
+                    ({ code, stack }) =>
+                    {
+                        assert.equal(code, 'ERR_INVALID_ARG_TYPE');
+                        assertStackTraceConnected(stack);
+                        return true;
+                    },
                 );
             },
         );
