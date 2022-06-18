@@ -1,3 +1,8 @@
+<a name="v0.2.1"></a>
+## [v0.2.1](https://github.com/origin-1/c8js/releases/tag/v0.2.1) (2022-06-18)
+
+* Improved stack traces for errors occurring during subprocess execution.
+
 <a name="v0.2.0"></a>
 ## [v0.2.0](https://github.com/origin-1/c8js/releases/tag/v0.2.0) (2022-06-06)
 
