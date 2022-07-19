@@ -168,6 +168,13 @@ declare namespace checkCoverage
         exclude?:               string | string[] | undefined;
 
         /**
+         * Whether to apply exclusion logic after source maps are used to remap compiled to
+         * original source files, or before.
+         * @default false
+         */
+        excludeAfterRemap?:     boolean;
+
+        /**
          * Whether or not to exclude all `'node_module'` folders.
          * @default true
          */
