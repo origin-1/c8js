@@ -20,10 +20,10 @@
     "url": "https://github.com/origin-1/c8js.git"
   },
   "scripts": {
-    "build": "npm install && node dev/clean && node dev/lint && node dev/coverage && node dev/make-docs",
+    "build": "npm install && node dev/clean && npm run lint && node dev/coverage && node dev/make-docs",
     "clean": "node dev/clean",
     "coverage": "node dev/coverage",
-    "lint": "node dev/lint",
+    "lint": "eslint . --ignore-path .gitignore --ignore-pattern test/fixtures",
     "make-docs": "node dev/make-docs",
     "test": "mocha --check-leaks --timeout=10000 ./test/*.spec.js"
   },
@@ -35,7 +35,7 @@
     "which": "2"
   },
   "devDependencies": {
-    "@fasttime/lint": "latest",
+    "@origin-1/eslint-config": "latest",
     "mocha": "latest",
     "ts-node": "latest",
     "typedoc": "latest",

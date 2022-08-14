@@ -1,7 +1,7 @@
 import type { Report }                              from 'c8';
 import type { ProcessEnvOptions, SpawnSyncReturns } from 'child_process';
 import type { CoverageMap }                         from 'istanbul-lib-coverage';
-// eslint-disable-next-line node/prefer-global/url
+// eslint-disable-next-line n/prefer-global/url
 import type { URL }                                 from 'url';
 import                                              'node';
 

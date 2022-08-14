@@ -1,5 +1,6 @@
 .*
 !.c8rc*
+!.eslintrc*
 !.git*
 !.nycrc*
 !/.npmrc
