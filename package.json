@@ -20,7 +20,8 @@
     "url": "https://github.com/origin-1/c8js.git"
   },
   "scripts": {
-    "build": "npm install && node dev/clean && npm run lint && node dev/coverage && node dev/make-docs",
+    "build": "npm install && npm run build-no-install",
+    "build-no-install": "node dev/clean && npm run lint && node dev/coverage && node dev/make-docs",
     "clean": "node dev/clean",
     "coverage": "node dev/coverage",
     "lint": "eslint . --ignore-path .gitignore --ignore-pattern test/fixtures",
