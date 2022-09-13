@@ -251,6 +251,21 @@ describe
 
                 it
                 (
+                    'on stdout with value `Infinity`',
+                    async () =>
+                    {
+                        const { stdout } =
+                        await c8js.exec
+                        (
+                            joinPath('test/fixtures/stdout-max-buffer-test.js'),
+                            { maxBuffer: Infinity, silent: true, tempDirectory },
+                        );
+                        assert.equal(stdout, 'l\'archiviazione è riuscita\n');
+                    },
+                );
+
+                it
+                (
                     'on stderr with `buffer` encoding',
                     () =>
                     testMaxBuffer
@@ -271,6 +286,21 @@ describe
                 (
                     'on stderr with `ascii` encoding',
                     () => testMaxBuffer('stderr', 'ascii', 'es liegt eine StC'),
+                );
+
+                it
+                (
+                    'on stderr with value `Infinity`',
+                    async () =>
+                    {
+                        const { stderr } =
+                        await c8js.exec
+                        (
+                            joinPath('test/fixtures/stderr-max-buffer-test.js'),
+                            { maxBuffer: Infinity, silent: true, tempDirectory },
+                        );
+                        assert.equal(stderr, 'es liegt eine Störung vor\n');
+                    },
                 );
             },
         );
