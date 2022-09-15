@@ -71,8 +71,6 @@ jobs:
 
   publish-docs:
 
-    if: github.ref == 'refs/heads/main'
-
     name: Publish Documentation
 
     needs: make-docs
