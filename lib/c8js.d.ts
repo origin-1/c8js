@@ -77,6 +77,9 @@ interface Watermarks
  * Executes a command, generates a coverage report and optionally checks that code coverage is
  * within the specified thresholds.
  *
+ * This function does not spawn a shell to parse the command line, so don't put any additional
+ * spaces or quotes around the command or the arguments.
+ *
  * @param command
  * The command to run.
  * This can be a binary executable or a Node.js module.
@@ -252,6 +255,9 @@ Promise<exec.Result>;
 /**
  * Executes a command, ensuring that temporary code coverage data is created.
  *
+ * This function does not spawn a shell to parse the command line, so don't put any additional
+ * spaces or quotes around the command or the arguments.
+ *
  * @param command
  * The command to run.
  * This can be a binary executable or a Node.js module.
@@ -321,8 +327,8 @@ declare namespace exec
         killSignal?:    NodeJS.Signals | number | undefined;
 
         /**
-         * Largest amount of data in bytes allowed on stdout or stderr. If exceeded, the subprocess
-         * is terminated and any output is truncated.
+         * Largest amount of data in bytes allowed on stdout or stderr.
+         * If exceeded, the subprocess is terminated and any output is truncated.
          * @default 1024 * 1024
          */
         maxBuffer?:     number | undefined;
