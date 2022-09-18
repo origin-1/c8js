@@ -19,6 +19,7 @@ interface CommonOptions
      * Current working directory of the subprocess, project root of reports and base directory for
      * all relative paths.
      * Must be an absolute path.
+     *
      * @default process.cwd
      */
     cwd?:               string | URL | undefined;
@@ -27,6 +28,7 @@ interface CommonOptions
      * Directory where coverage reports will be output to.
      * The specified directory is ignored if none of the selected reports writes to disk.
      * This option is used to determine the location of `tempDirectory`, if not specified.
+     *
      * @default 'coverage'
      */
     reportsDirectory?:  string | undefined;
@@ -41,6 +43,7 @@ interface CommonOptions
     /**
      * If `false`, c8js will not load c8 options from a `c8` section in `package.json`, or from a
      * JSON configuration file on disk.
+     *
      * @default true
      */
     useC8Config?:       boolean | undefined;
@@ -147,12 +150,14 @@ declare namespace checkCoverage
          * `extension` will be loaded into the report.
          * If any of those files remain uncovered, they will be factored into the report with a
          * default of 0% coverage.
+         *
          * @default false
          */
         all?:                   boolean | undefined;
 
         /**
          * Fails if coverage falls below 100%.
+         *
          * @default false
          */
         100?:                   boolean | undefined;
@@ -160,12 +165,14 @@ declare namespace checkCoverage
         /**
          * Percentage of branches that must be covered for the check to pass.
          * This setting is ignored if option `100` is used.
+         *
          * @default 0
          */
         branches?:              number | undefined;
 
         /**
          * Glob patterns matching files that should be excluded from coverage.
+         *
          * @default await import('@istanbuljs/schema/default-exclude.js')
          */
         exclude?:               string | string[] | undefined;
@@ -173,18 +180,21 @@ declare namespace checkCoverage
         /**
          * Whether to apply exclusion logic after source maps are used to remap compiled to
          * original source files, or before.
+         *
          * @default false
          */
         excludeAfterRemap?:     boolean;
 
         /**
          * Whether or not to exclude all `'node_module'` folders.
+         *
          * @default true
          */
         excludeNodeModules?:    boolean | undefined;
 
         /**
          * Only files matching these extensions will be included in coverage.
+         *
          * @default ['.js', '.cjs', '.mjs', '.ts', '.tsx', '.jsx']
          */
         extension?:             string | string[] | undefined;
@@ -192,6 +202,7 @@ declare namespace checkCoverage
         /**
          * Percentage of functions that must be covered for the check to pass.
          * This setting is ignored if option `100` is used.
+         *
          * @default 0
          */
         functions?:             number | undefined;
@@ -199,6 +210,7 @@ declare namespace checkCoverage
         /**
          * Glob patterns matching files that should be included in coverage.
          * An empty array matches all files.
+         *
          * @default []
          */
         include?:               string | string[] | undefined;
@@ -206,12 +218,14 @@ declare namespace checkCoverage
         /**
          * Percentage of lines that must be covered for the check to pass.
          * This setting is ignored if option `100` is used.
+         *
          * @default 90
          */
         lines?:                 number | undefined;
 
         /**
          * Checks thresholds on a per-file basis.
+         *
          * @default false
          */
         perFile?:               boolean | undefined;
@@ -226,6 +240,7 @@ declare namespace checkCoverage
         /**
          * Percentage of statements that must be covered for the check to pass.
          * This setting is ignored if option `100` is used.
+         *
          * @default 0
          */
         statements?:            number | undefined;
@@ -289,63 +304,84 @@ declare namespace exec
     {
         /**
          * If `false`, temporary V8 coverage files will not be deleted before subprocess execution.
+         *
          * @default false
          */
-        clean?:         boolean | undefined;
+        clean?:             boolean | undefined;
 
         /**
          * The encoding used for all stdio inputs and outputs.
+         *
          * @default 'utf8'
          */
-        encoding?:      BufferEncoding | 'buffer' | null | undefined;
+        encoding?:          BufferEncoding | 'buffer' | null | undefined;
 
         /**
          * Environment key-value pairs.
+         *
          * @default process.env
          */
-        env?:           NodeJS.ProcessEnv | undefined;
-
-        /**
-         * By default, an error during subprocess execution will be reported as an exception,
-         * similar to the `Error` object passed as the first argument to a callback of `execFile`.
-         * If the option `failFast` is set to `false`, an error during subprocess execution will not
-         * trigger an exception; instead, the result will contain a property `error` holding the
-         * `Error` object.
-         * @default true
-         */
-        failFast?:      boolean | undefined;
+        env?:               NodeJS.ProcessEnv | undefined;
 
         /**
          * Sets the group identity of the process.
          */
-        gid?:           number | undefined;
+        gid?:               number | undefined;
 
         /**
          * The signal value used to kill the subprocess in case of timeout or buffer overflow.
+         *
          * @default 'SIGTERM'
          */
-        killSignal?:    NodeJS.Signals | number | undefined;
+        killSignal?:        NodeJS.Signals | number | undefined;
 
         /**
          * Largest amount of data in bytes allowed on stdout or stderr.
          * If exceeded, the subprocess is terminated and any output is truncated.
+         *
          * @default 1024 * 1024
          */
-        maxBuffer?:     number | undefined;
+        maxBuffer?:         number | undefined;
 
         /**
          * If `true`, stdin, stdout, and stderr of the subprocess will be piped to the current
          * process, otherwise they will be inherited from the current process.
+         *
          * @default false
          */
-        silent?:        boolean | undefined;
+        silent?:            boolean | undefined;
+
+        /**
+         * Controls how an error during subprocess execution is reported to the caller.
+         *
+         * * `early` causes an error during subprocess execution to throw an exception immediately.
+         *
+         * * `late` causes an error during subprocess execution to throw an exception only after any
+         * subsequent operations - like generating a report or checking the code coverage - have
+         * finished successfully.
+         * If no operations are scheduled after subprocess execution, as when {@link exec} is
+         * called, this setting behaves very much like `early`.
+         *
+         * * `never` prevents an error during subprocess execution to throw an exception.
+         * Instead, if all subsequent operations finish successfully, the property `error` of the
+         * returned object will contain an `Error` object.
+         *
+         * In all cases, the `Error` object thrown or returned will be similar to the first argument
+         * passed to a callback of [`execFile`](
+         * https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback
+         * ).
+         *
+         * @default 'early'
+         */
+         throwExecError?:   'early' | 'late' | 'never' | undefined;
 
         /**
          * The maximum amount of time the process is allowed to run in milliseconds.
          * A non-positive value means no time limit.
+         *
          * @default undefined
          */
-        timeout?:       number | undefined;
+        timeout?:           number | undefined;
 
         /**
          * Sets the user identity of the process.
@@ -377,12 +413,14 @@ declare namespace report
         /**
          * Whether to check that code coverage is within the specified thresholds.
          * This setting is ignored if option `100` is used.
+         *
          * @default false
          */
         checkCoverage?: boolean | undefined;
 
         /**
          * Coverage reporter(s) to use.
+         *
          * @default 'text'
          */
         reporter?:      string | string[] | undefined;
@@ -390,6 +428,7 @@ declare namespace report
         /**
          * If `true`, files with 100% statement, branch, and function coverage will not be shown by
          * the text reporter.
+         *
          * @default false
          */
         skipFull?:      boolean | undefined;

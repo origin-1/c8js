@@ -98,7 +98,7 @@ describe
             {
                 it
                 (
-                    'without option `failFast`',
+                    'without option `throwExecError`',
                     async () =>
                     {
                         await assert.rejects
@@ -124,7 +124,7 @@ describe
 
                 it
                 (
-                    'with option `failFast` false',
+                    'with option `throwExecError` set to `"never"`',
                     async () =>
                     {
                         const result =
@@ -134,9 +134,9 @@ describe
                             ['not-found'],
                             {
                                 cwd: joinPath('test/fixtures'),
-                                failFast: false,
                                 silent: true,
                                 tempDirectory,
+                                throwExecError: 'never',
                             },
                         );
                         assert.equal(result.status, 1);
@@ -213,10 +213,10 @@ describe
                         joinPath(`test/fixtures/${streamName}-max-buffer-test.js`),
                         {
                             encoding,
-                            failFast: false,
                             maxBuffer: 17,
                             silent: true,
                             tempDirectory,
+                            throwExecError: 'never',
                         },
                     );
                     assert.deepEqual(actual, expected);
@@ -319,7 +319,7 @@ describe
                         await c8js.exec
                         (
                             joinPath('test/fixtures/timeout-test.js'),
-                            { failFast: false, silent: true, tempDirectory, timeout: 1 },
+                            { silent: true, tempDirectory, throwExecError: 'never', timeout: 1 },
                         );
                         assert.equal(status, null);
                         assert.equal(signal, 'SIGTERM');
@@ -368,10 +368,10 @@ describe
                         (
                             joinPath('test/fixtures/timeout-test.js'),
                             {
-                                failFast: false,
                                 killSignal: 'sigint',
                                 silent: true,
                                 tempDirectory,
+                                throwExecError: 'never',
                                 timeout: 1,
                             },
                         );
@@ -389,11 +389,11 @@ describe
                         (
                             joinPath('test/fixtures/stdout-max-buffer-test.js'),
                             {
-                                failFast: false,
                                 killSignal: 'sigint',
                                 maxBuffer: 17,
                                 silent: true,
                                 tempDirectory,
+                                throwExecError: 'never',
                             },
                         );
                         assert.equal(signal, 'SIGINT');
