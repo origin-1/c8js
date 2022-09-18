@@ -1153,10 +1153,10 @@ describe
                         await c8js
                         (
                             process.execPath,
-                            ['c8/custom-ext.special'],
+                            ['custom-ext.special'],
                             {
                                 all: true,
-                                cwd: joinPath('test/fixtures'),
+                                cwd: joinPath('test/fixtures/c8'),
                                 exclude: '**/*.ts',
                                 extension: ['.js', '.special'],
                                 reporter: 'json',
