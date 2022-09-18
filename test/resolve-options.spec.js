@@ -108,6 +108,41 @@ describe
 
         it
         (
+            'throws an error if an unknown option is specified',
+            async () =>
+            {
+                await assert.rejects
+                (
+                    resolveOptions({ foo: undefined }),
+                    {
+                        code: 'C8JS_UNKNOWN_OPTIONS',
+                        message: 'The following option is not known to c8js: \'foo\'',
+                        unknownOptionNames: ['foo'],
+                    },
+                );
+            },
+        );
+
+        it
+        (
+            'throws an error if multiple unknown options are specified',
+            async () =>
+            {
+                await assert.rejects
+                (
+                    resolveOptions({ foo: 1, 42: 2, bar: 3 }),
+                    {
+                        code: 'C8JS_UNKNOWN_OPTIONS',
+                        message:
+                        'The following options are not known to c8js: \'42\', \'bar\', and \'foo\'',
+                        unknownOptionNames: ['42', 'bar', 'foo'],
+                    },
+                );
+            },
+        );
+
+        it
+        (
             'throws an error if the configuration file is invalid',
             async () =>
             {

@@ -124,7 +124,7 @@ describe
 
                 it
                 (
-                    'with option `throwExecError` set to `"never"`',
+                    'with option `throwExecError` set to `\'never\'`',
                     async () =>
                     {
                         const result =
