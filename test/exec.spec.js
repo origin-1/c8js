@@ -124,7 +124,7 @@ describe
 
                 it
                 (
-                    'with option `throwExecError` set to `\'never\'`',
+                    'with option `throwExecError` set to \'never\'',
                     async () =>
                     {
                         const result =
@@ -402,46 +402,102 @@ describe
             },
         );
 
-        it
+        describe
         (
-            'throws an error if option `gid` is not a number',
-            async () =>
+            'throws an error if an option has an invalid value',
+            () =>
             {
-                await assert.rejects
-                (
-                    c8js.exec
+                async function testInvalidOption
+                (options, expectedErrorConstructor, expectedErrorCode)
+                {
+                    await assert.rejects
                     (
-                        joinPath('test/fixtures/noop.js'),
-                        { gid: 'foo', tempDirectory },
-                    ),
-                    ({ code, stack }) =>
-                    {
-                        assert.equal(code, 'ERR_INVALID_ARG_TYPE');
-                        assertStackTraceConnected(stack);
-                        return true;
-                    },
-                );
-            },
-        );
+                        c8js.exec(joinPath('test/fixtures/noop.js'), { tempDirectory, ...options }),
+                        error =>
+                        {
+                            assert(error instanceof expectedErrorConstructor);
+                            assert.equal(error.code, expectedErrorCode);
+                            assertStackTraceConnected(error.stack);
+                            return true;
+                        },
+                    );
+                }
 
-        it
-        (
-            'throws an error if option `uid` is not a number',
-            async () =>
-            {
-                await assert.rejects
+                it
                 (
-                    c8js.exec
+                    'option `gid` is not a number',
+                    () => testInvalidOption({ gid: 'foo' }, TypeError, 'ERR_INVALID_ARG_TYPE'),
+                );
+
+                it
+                (
+                    'option `gid` is not a number with `throwExecError` set to \'never\'',
+                    () =>
+                    testInvalidOption
+                    ({ gid: 'foo', throwExecError: 'never' }, TypeError, 'ERR_INVALID_ARG_TYPE'),
+                );
+
+                it
+                (
+                    'option `killSignal` is not a number or string',
+                    () => testInvalidOption({ killSignal: 1n }, TypeError, 'ERR_INVALID_ARG_TYPE'),
+                );
+
+                it
+                (
+                    'option `killSignal` is not a number or string with `throwExecError` set to ' +
+                    '\'never\'',
+                    () =>
+                    testInvalidOption
                     (
-                        joinPath('test/fixtures/noop.js'),
-                        { uid: 'foo', tempDirectory },
+                        { killSignal: 1n, throwExecError: 'never' },
+                        TypeError,
+                        'ERR_INVALID_ARG_TYPE',
                     ),
-                    ({ code, stack }) =>
-                    {
-                        assert.equal(code, 'ERR_INVALID_ARG_TYPE');
-                        assertStackTraceConnected(stack);
-                        return true;
-                    },
+                );
+
+                it
+                (
+                    'option `maxBuffer` is not a non-negative number',
+                    () => testInvalidOption({ maxBuffer: -1 }, RangeError, 'ERR_OUT_OF_RANGE'),
+                );
+
+                it
+                (
+                    'option `maxBuffer` is not a non-negative number with `throwExecError` set ' +
+                    'to \'never\'',
+                    () =>
+                    testInvalidOption
+                    ({ maxBuffer: -1, throwExecError: 'never' }, RangeError, 'ERR_OUT_OF_RANGE'),
+                );
+
+                it
+                (
+                    'option `timeout` is not an unsigned integer',
+                    () => testInvalidOption({ timeout: NaN }, RangeError, 'ERR_OUT_OF_RANGE'),
+                );
+
+                it
+                (
+                    'option `timeout` is not an unsigned integer with `throwExecError` set to ' +
+                    '\'never\'',
+                    () =>
+                    testInvalidOption
+                    ({ timeout: NaN, throwExecError: 'never' }, RangeError, 'ERR_OUT_OF_RANGE'),
+                );
+
+                it
+                (
+                    'option `uid` is not a number',
+                    () => testInvalidOption({ uid: 'foo' }, TypeError, 'ERR_INVALID_ARG_TYPE'),
+                );
+
+                it
+                (
+                    'option `uid` is not a number with `throwExecError` set to \'never\'',
+                    () =>
+                    testInvalidOption
+                    ({ uid: 'foo', throwExecError: 'never' }, TypeError, 'ERR_INVALID_ARG_TYPE'),
                 );
             },
         );

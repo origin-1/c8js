@@ -41,7 +41,7 @@ describe
             {
                 it
                 (
-                    '`early`',
+                    '\'early\'',
                     async () =>
                     {
                         const reportsDirectory = await createTempDirectory();
@@ -61,7 +61,7 @@ describe
 
                 it
                 (
-                    '`late`',
+                    '\'late\'',
                     async () =>
                     {
                         const reportsDirectory = await createTempDirectory();
@@ -81,7 +81,7 @@ describe
 
                 it
                 (
-                    '`never`',
+                    '\'never\'',
                     async () =>
                     {
                         const reportsDirectory = await createTempDirectory();

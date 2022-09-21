@@ -310,7 +310,9 @@ declare namespace exec
         clean?:             boolean | undefined;
 
         /**
-         * The encoding used for all stdio inputs and outputs.
+         * The character encoding used to decode the stdout and stderr output.
+         * If 'buffer', or an unrecognized character encoding is specified, `Buffer` objects will be
+         * returned instead of strings.
          *
          * @default 'utf8'
          */
@@ -354,18 +356,20 @@ declare namespace exec
         /**
          * Controls how an error during subprocess execution is reported to the caller.
          *
-         * * `early` causes an error during subprocess execution to throw an exception immediately.
+         * * `'early'` causes an error during subprocess execution to throw an exception
+         * immediately.
          *
-         * * `late` causes an error during subprocess execution to throw an exception only after any
-         * subsequent operations - like generating a report or checking the code coverage - have
+         * * `'late'` causes an error during subprocess execution to throw an exception only after
+         * any subsequent operations - like generating a report or checking the code coverage - have
          * finished successfully.
-         * If no operations are scheduled after subprocess execution, as when {@link exec} is
-         * called, this setting behaves very much like `early`.
+         * If no operations are scheduled after subprocess execution, as when {@link exec `exec`} is
+         * called, this setting behaves very much like `'early'`.
          *
-         * * `never` prevents an error during subprocess execution to throw an exception.
+         * * `'never'` prevents an error during subprocess execution to throw an exception.
          * Instead, if all subsequent operations finish successfully, the property `error` of the
          * returned object will contain an `Error` object.
          *
+         * An unrecognized value behaves like `'early'`.
          * In all cases, the `Error` object thrown or returned will be similar to the first argument
          * passed to a callback of [`execFile`](
          * https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback
