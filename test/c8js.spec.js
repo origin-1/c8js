@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
-import { createTempDirectory, joinPath }    from './utils.js';
-import { strict as assert }                 from 'assert';
-import c8js                                 from 'c8js';
-import { existsSync }                       from 'fs';
-import { join }                             from 'path';
+import { assertStackTraceConnected, createTempDirectory, joinPath } from './utils.js';
+import { strict as assert }                                         from 'assert';
+import c8js                                                         from 'c8js';
+import { existsSync }                                               from 'fs';
+import { join }                                                     from 'path';
 
 describe
 (
@@ -39,6 +39,16 @@ describe
             'with option `throwExecError`',
             () =>
             {
+                function assertErrorExpected({ code, constructor, killed, signal, stack })
+                {
+                    assert.equal(code, 42);
+                    assert.equal(constructor, Error);
+                    assert.equal(killed, false);
+                    assert.equal(signal, null);
+                    assertStackTraceConnected(stack);
+                    return true;
+                }
+
                 it
                 (
                     '\'early\'',
@@ -52,7 +62,7 @@ describe
                                 joinPath('test/fixtures/fail.js'),
                                 { reporter: 'lcovonly', reportsDirectory, throwExecError: 'early' },
                             ),
-                            { code: 42, killed: false, signal: null },
+                            assertErrorExpected,
                         );
                         const fileName = join(reportsDirectory, 'lcov.info');
                         assert(!existsSync(fileName));
@@ -72,7 +82,7 @@ describe
                                 joinPath('test/fixtures/fail.js'),
                                 { reporter: 'lcovonly', reportsDirectory, throwExecError: 'late' },
                             ),
-                            { code: 42, killed: false, signal: null },
+                            assertErrorExpected,
                         );
                         const fileName = join(reportsDirectory, 'lcov.info');
                         assert(existsSync(fileName));
@@ -91,9 +101,7 @@ describe
                             joinPath('test/fixtures/fail.js'),
                             { reporter: 'lcovonly', reportsDirectory, throwExecError: 'never' },
                         );
-                        assert.equal(error.code, 42);
-                        assert.equal(error.killed, false);
-                        assert.equal(error.signal, null);
+                        assertErrorExpected(error);
                         const fileName = join(reportsDirectory, 'lcov.info');
                         assert(existsSync(fileName));
                     },

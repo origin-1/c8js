@@ -1,14 +1,8 @@
 /* eslint-env mocha */
 
-import { createTempDirectory, joinPath }            from './utils.js';
-import { strict as assert }                         from 'assert';
-import c8js, { version as c8js_version, commands }  from 'c8js';
-
-function assertStackTraceConnected(stack)
-{
-    assert(/\n    at (?:async )?doExec \(/.test(stack));
-    assert(stack.includes(`(${import.meta.url}:`));
-}
+import { assertStackTraceConnected, createTempDirectory, joinPath } from './utils.js';
+import { strict as assert }                                         from 'assert';
+import c8js, { version as c8js_version, commands }                  from 'c8js';
 
 describe
 (
