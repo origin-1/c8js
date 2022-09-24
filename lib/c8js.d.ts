@@ -331,7 +331,8 @@ declare namespace exec
         gid?:               number | undefined;
 
         /**
-         * The signal value used to kill the subprocess in case of timeout or buffer overflow.
+         * The signal value used to kill the subprocess in case of timeout, buffer overflow, or when
+         * the current process exits.
          *
          * @default 'SIGTERM'
          */

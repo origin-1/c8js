@@ -32,7 +32,6 @@
     "@types/istanbul-lib-coverage": "2",
     "@types/node": ">=14",
     "c8": "7",
-    "signal-exit": "3",
     "which": "2"
   },
   "devDependencies": {
