@@ -9,9 +9,9 @@ interface CommonOptions
 {
     /**
      * Path to c8 JSON configuration file.
-     * If not provided, c8js searches for files named `.c8rc`, `.c8rc.json`, `.nycrc`, or
-     * `.nycrc.json`, starting from `cwd` and walking up the filesystem tree.
-     * This setting is ignored if option `useC8Config` is set to `false`.
+     * If not provided, c8js searches for files named `'.c8rc'`, `'.c8rc.json'`, `'.nycrc'`, or
+     * `'.nycrc.json'`, starting from `cwd` and walking up the filesystem tree.
+     * This setting is ignored if option {@link useC8Config `useC8Config`} is set to `false`.
      */
     c8Config?:          string | undefined;
 
@@ -27,7 +27,8 @@ interface CommonOptions
     /**
      * Directory where coverage reports will be output to.
      * The specified directory is ignored if none of the selected reports writes to disk.
-     * This option is used to determine the location of `tempDirectory`, if not specified.
+     * This option is used to determine the location of {@link tempDirectory `tempDirectory`}, if
+     * not specified.
      *
      * @default 'coverage'
      */
@@ -36,12 +37,13 @@ interface CommonOptions
     /**
      * Directory where temporary V8 coverage files are written to and read from.
      * This directory will be created if it does not exist.
-     * Defaults to a subdirectory named `'tmp'` in the directory specified by `reportsDirectory`.
+     * Defaults to a subdirectory named `'tmp'` in the directory specified by
+     * {@link reportsDirectory `reportsDirectory`}.
      */
     tempDirectory?:     string | undefined;
 
     /**
-     * If `false`, c8js will not load c8 options from a `c8` section in `package.json`, or from a
+     * If `false`, c8js will not load c8 options from a `c8` section in `'package.json'`, or from a
      * JSON configuration file on disk.
      *
      * @default true
@@ -79,6 +81,11 @@ interface Watermarks
 /**
  * Executes a command, generates a coverage report and optionally checks that code coverage is
  * within the specified thresholds.
+ *
+ * By default, if the command exits with a nonzero code this function will throw an error without
+ * generating a coverage report.
+ * This behavior can be changed with the option
+ * {@link exec.Options.throwExecError `throwExecError`}.
  *
  * This function does not spawn a shell to parse the command line, so don't put any additional
  * spaces or quotes around the command or the arguments.
@@ -146,8 +153,9 @@ declare namespace checkCoverage
     interface Options extends CommonOptions, InheritableC8Options
     {
         /**
-         * If `true`, all files specified with the options `src`, `include`, `exclude` and
-         * `extension` will be loaded into the report.
+         * If `true`, all files specified with the options {@link src `src`},
+         * {@link include `include`}, {@link exclude `exclude`} and {@link extension `extension`}
+         * will be loaded into the report.
          * If any of those files remain uncovered, they will be factored into the report with a
          * default of 0% coverage.
          *
@@ -164,7 +172,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of branches that must be covered for the check to pass.
-         * This setting is ignored if option `100` is used.
+         * This setting is ignored if option {@link "100" `100`} is used.
          *
          * @default 0
          */
@@ -178,8 +186,8 @@ declare namespace checkCoverage
         exclude?:               string | string[] | undefined;
 
         /**
-         * Whether to apply exclusion logic after source maps are used to remap compiled to
-         * original source files, or before.
+         * Whether to apply exclusion logic after source maps are used to remap compiled to original
+         * source files, or before.
          *
          * @default false
          */
@@ -201,7 +209,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of functions that must be covered for the check to pass.
-         * This setting is ignored if option `100` is used.
+         * This setting is ignored if option {@link "100" `100`} is used.
          *
          * @default 0
          */
@@ -217,7 +225,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of lines that must be covered for the check to pass.
-         * This setting is ignored if option `100` is used.
+         * This setting is ignored if option {@link "100" `100`} is used.
          *
          * @default 90
          */
@@ -239,7 +247,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of statements that must be covered for the check to pass.
-         * This setting is ignored if option `100` is used.
+         * This setting is ignored if option {@link "100" `100`} is used.
          *
          * @default 0
          */
@@ -311,8 +319,8 @@ declare namespace exec
 
         /**
          * The character encoding used to decode the stdout and stderr output.
-         * If 'buffer', or an unrecognized character encoding is specified, `Buffer` objects will be
-         * returned instead of strings.
+         * If `'buffer'`, or an unrecognized character encoding is specified, `Buffer` objects will
+         * be returned instead of strings.
          *
          * @default 'utf8'
          */
@@ -391,7 +399,7 @@ declare namespace exec
         /**
          * Sets the user identity of the process.
          */
-        uid?:           number | undefined;
+        uid?:               number | undefined;
     }
 
     interface Result extends SpawnSyncReturns<string | Buffer>
@@ -417,7 +425,7 @@ declare namespace report
     {
         /**
          * Whether to check that code coverage is within the specified thresholds.
-         * This setting is ignored if option `100` is used.
+         * This setting is ignored if option {@link "100" `100`} is used.
          *
          * @default false
          */

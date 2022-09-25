@@ -18,7 +18,12 @@ Use [`npm install`](https://docs.npmjs.com/cli/install):
 
 ## Usage
 
-See the [**API documentation**](https://origin-1.github.io/c8js/modules).
+c8js exports the functions `c8js` (the default export), `report`, and `checkCoverage`, in place of the commands `c8`, `c8 report`, and `c8 check-coverage` respectively.
+Additionally, c8js exports the function `exec` that just runs a command and saves V8 coverage data.
+
+An important difference is that all c8js functions throw exceptions in situations where c8 commands would terminate the process with a nonzero exit code.
+
+For detailed usage information, see the [**API documentation**](https://origin-1.github.io/c8js/modules).
 
 ## Examples
 
