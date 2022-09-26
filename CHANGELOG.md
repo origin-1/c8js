@@ -1,3 +1,17 @@
+<a name="v0.3.0"></a>
+## [v0.3.0](https://github.com/origin-1/c8js/releases/tag/v0.3.0) (2022-09-26)
+
+* Fix: c8js works again in Node.js < 14.13.
+* The new option `throwExecError` has replaced `failFast`.
+* All c8js functions now throw an exception when passed unknown options.
+* Added lazy validation for the options `killSignal`, `maxBuffer` and `timeout`.
+* Signals sent to the process running c8js are no longer passed down to a subprocess.
+* When a process running c8js exits while a subprocess is still running, the subprocess will be sent the signal specified by the option `killSignal`. Previously, it would always be sent `'SIGHUP'` or `'SIGTERM'`.
+* Improved performance when the option `maxBuffer` is set to `Infinity`.
+* Extended documentation.
+* Linking to the new homepage.
+* Removed a few unused dependencies.
+
 <a name="v0.2.1"></a>
 ## [v0.2.1](https://github.com/origin-1/c8js/releases/tag/v0.2.1) (2022-06-18)
 
