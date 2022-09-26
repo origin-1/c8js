@@ -9,7 +9,7 @@
     "nodejs",
     "v8"
   ],
-  "homepage": "https://github.com/origin-1/c8js#readme",
+  "homepage": "https://origin-1.github.io/c8js/",
   "license": "ISC",
   "author": "Francesco Trotta <ft@fasttime.org> (https://github.com/fasttime)",
   "files": [
