@@ -150,11 +150,7 @@ describe
                 await assert.rejects
                 (
                     resolveOptions({ c8Config }),
-                    {
-                        message:
-                        `Unable to parse file '${c8Config
-                        }': Unexpected token * in JSON at position 1`,
-                    },
+                    ({ message }) => message.startsWith(`Unable to parse file '${c8Config}': `),
                 );
             },
         );

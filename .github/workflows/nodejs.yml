@@ -40,6 +40,8 @@ jobs:
           os: ubuntu-latest
         - node-version: '16'
           os: ubuntu-latest
+        - node-version: '19'
+          os: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
