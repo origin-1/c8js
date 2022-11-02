@@ -26,7 +26,7 @@
     "coverage": "node dev/coverage",
     "lint": "eslint . --ignore-path .gitignore --ignore-pattern test/fixtures",
     "make-docs": "node dev/make-docs",
-    "test": "mocha --check-leaks --timeout=10000 ./test/*.spec.js"
+    "test": "mocha --check-leaks --timeout=10000 test/*.spec.js"
   },
   "dependencies": {
     "@types/istanbul-lib-coverage": "2",

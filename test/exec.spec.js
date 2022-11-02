@@ -127,8 +127,8 @@ describe
                             process.execPath,
                             ['not-found'],
                             {
-                                cwd: joinPath('test/fixtures'),
-                                silent: true,
+                                cwd:            joinPath('test/fixtures'),
+                                silent:         true,
                                 tempDirectory,
                                 throwExecError: 'never',
                             },
@@ -207,8 +207,8 @@ describe
                         joinPath(`test/fixtures/${streamName}-max-buffer-test.js`),
                         {
                             encoding,
-                            maxBuffer: 17,
-                            silent: true,
+                            maxBuffer:      17,
+                            silent:         true,
                             tempDirectory,
                             throwExecError: 'never',
                         },
@@ -362,11 +362,11 @@ describe
                         (
                             joinPath('test/fixtures/timeout-test.js'),
                             {
-                                killSignal: 'sigint',
-                                silent: true,
+                                killSignal:     'sigint',
+                                silent:         true,
                                 tempDirectory,
                                 throwExecError: 'never',
-                                timeout: 1,
+                                timeout:        1,
                             },
                         );
                         assert.equal(signal, 'SIGINT');
@@ -383,9 +383,9 @@ describe
                         (
                             joinPath('test/fixtures/stdout-max-buffer-test.js'),
                             {
-                                killSignal: 'sigint',
-                                maxBuffer: 17,
-                                silent: true,
+                                killSignal:     'sigint',
+                                maxBuffer:      17,
+                                silent:         true,
                                 tempDirectory,
                                 throwExecError: 'never',
                             },

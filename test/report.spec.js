@@ -39,12 +39,12 @@ describe
                 await c8js.report
                 (
                     {
-                        allowExternal: true,
-                        cwd: joinPath('test/fixtures'),
-                        omitRelative: false,
-                        reporter: 'json',
+                        allowExternal:  true,
+                        cwd:            joinPath('test/fixtures'),
+                        omitRelative:   false,
+                        reporter:       'json',
                         reportsDirectory,
-                        resolve: 'resolve-test',
+                        resolve:        'resolve-test',
                     },
                 );
                 const report = await loadJSON(join(reportsDirectory, 'coverage-final.json'));

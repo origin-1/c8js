@@ -115,8 +115,8 @@ describe
                 (
                     resolveOptions({ foo: undefined }),
                     {
-                        code: 'C8JS_UNKNOWN_OPTIONS',
-                        message: 'The following option is not known to c8js: \'foo\'',
+                        code:               'C8JS_UNKNOWN_OPTIONS',
+                        message:            'The following option is not known to c8js: \'foo\'',
                         unknownOptionNames: ['foo'],
                     },
                 );
@@ -132,7 +132,7 @@ describe
                 (
                     resolveOptions({ foo: 1, 42: 2, bar: 3 }),
                     {
-                        code: 'C8JS_UNKNOWN_OPTIONS',
+                        code:               'C8JS_UNKNOWN_OPTIONS',
                         message:
                         'The following options are not known to c8js: \'42\', \'bar\', and \'foo\'',
                         unknownOptionNames: ['42', 'bar', 'foo'],
@@ -166,9 +166,9 @@ describe
                 (
                     {
                         cwd,
-                        resolve: 'resolve',
-                        src: ['src-1', 'src-2'],
-                        tempDirectory: 'temp-directory',
+                        resolve:        'resolve',
+                        src:            ['src-1', 'src-2'],
+                        tempDirectory:  'temp-directory',
                     },
                 );
                 assert.equal(config.reportsDirectory, join(cwd, 'coverage'));

@@ -4,21 +4,21 @@ module.exports =
 createConfig
 (
     {
-        files: ['*.cjs', '*.js'],
-        jsVersion: 2020,
-        env: { node: true },
-        parserOptions: { sourceType: 'module' },
+        files:          ['*.cjs', '*.js'],
+        jsVersion:      2020,
+        parserOptions:  { sourceType: 'module' },
     },
     {
-        files: '*.ts',
-        tsVersion: 'latest',
-        env: { node: true },
-        parserOptions: { project: 'tsconfig.json' },
+        files:          '*.ts',
+        tsVersion:      'latest',
+        parserOptions:  { project: 'tsconfig.json' },
     },
     {
-        files: 'dev/*.js',
-        jsVersion: 2022,
-        env: { node: true },
-        parserOptions: { sourceType: 'module' },
+        files:          ['*.cjs', '*.js', '*.ts'],
+        env:            { node: true },
+    },
+    {
+        files:          'dev/*',
+        jsVersion:      2022,
     },
 );

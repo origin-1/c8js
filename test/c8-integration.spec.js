@@ -126,10 +126,10 @@ describe
                 (
                     joinPath('test/fixtures/c8/normal.js'),
                     {
-                        exclude: 'test/*.js',
-                        reporter: 'json',
+                        exclude:    'test/*.js',
+                        reporter:   'json',
                         reportsDirectory,
-                        silent: true,
+                        silent:     true,
                     },
                 );
                 await assertReportMatches.json(testName, result);
@@ -148,11 +148,11 @@ describe
                 (
                     joinPath('test/fixtures/c8/multiple-spawn.js'),
                     {
-                        cwd: joinPath(),
-                        exclude: 'test/*.js',
-                        reporter: 'json',
+                        cwd:        joinPath(),
+                        exclude:    'test/*.js',
+                        reporter:   'json',
                         reportsDirectory,
-                        silent: true,
+                        silent:     true,
                     },
                 );
                 await assertReportMatches.json(testName, result);
@@ -194,11 +194,11 @@ describe
                 (
                     'allowExternal.js',
                     {
-                        allowExternal: true,
-                        cwd: joinPath('test/fixtures/c8/report'),
-                        reporter: 'json',
+                        allowExternal:  true,
+                        cwd:            joinPath('test/fixtures/c8/report'),
+                        reporter:       'json',
                         reportsDirectory,
-                        silent: true,
+                        silent:         true,
                     },
                 );
                 await assertReportMatches.json(testName, result);
@@ -222,12 +222,12 @@ describe
                 (
                     'srcOverride.js',
                     {
-                        all: true,
-                        allowExternal: true,
-                        cwd: joinPath('test/fixtures/c8/report'),
-                        reporter: 'json',
+                        all:            true,
+                        allowExternal:  true,
+                        cwd:            joinPath('test/fixtures/c8/report'),
+                        reporter:       'json',
                         reportsDirectory,
-                        silent: true,
+                        silent:         true,
                         src:
                         [
                             joinPath('test/fixtures/c8/multidir1'),
@@ -255,10 +255,10 @@ describe
                         (
                             joinPath('test/fixtures/c8/normal.js'),
                             {
-                                exclude: 'test/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                     },
@@ -274,9 +274,9 @@ describe
                         await c8js.checkCoverage
                         (
                             {
-                                branches: 55,
-                                exclude: 'test/*.js',
-                                lines: 70,
+                                branches:   55,
+                                exclude:    'test/*.js',
+                                lines:      70,
                                 reportsDirectory,
                                 statements: 70,
                             },
@@ -297,14 +297,14 @@ describe
                             c8js.checkCoverage
                             ({ exclude: 'test/*.js', lines: 90, reportsDirectory }),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 83.33,
-                                        fileName: null,
-                                        key: 'lines',
-                                        threshold: 90,
+                                        coverage:   83.33,
+                                        fileName:   null,
+                                        key:        'lines',
+                                        threshold:  90,
                                     },
                                 ],
                                 message:
@@ -327,22 +327,22 @@ describe
                             c8js.checkCoverage
                             (
                                 {
-                                    cwd: joinPath(),
-                                    exclude: 'test/*.js',
-                                    lines: 90,
-                                    perFile: true,
+                                    cwd:        joinPath(),
+                                    exclude:    'test/*.js',
+                                    lines:      90,
+                                    perFile:    true,
                                     reportsDirectory,
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 75,
-                                        fileName: 'test/fixtures/c8/normal.js',
-                                        key: 'lines',
-                                        threshold: 90,
+                                        coverage:   75,
+                                        fileName:   'test/fixtures/c8/normal.js',
+                                        key:        'lines',
+                                        threshold:  90,
                                     },
                                 ],
                                 message:
@@ -367,12 +367,12 @@ describe
                             (
                                 joinPath('test/fixtures/c8/normal.js'),
                                 {
-                                    checkCoverage: true,
-                                    exclude: 'test/*.js',
-                                    lines: 90,
-                                    reporter: [],
+                                    checkCoverage:  true,
+                                    exclude:        'test/*.js',
+                                    lines:          90,
+                                    reporter:       [],
                                     reportsDirectory,
-                                    silent: true,
+                                    silent:         true,
                                 },
                             ),
                             {
@@ -397,40 +397,40 @@ describe
                             (
                                 joinPath('test/fixtures/c8/normal.js'),
                                 {
-                                    100: true,
-                                    exclude: 'test/*.js',
-                                    reporter: [],
+                                    100:        true,
+                                    exclude:    'test/*.js',
+                                    reporter:   [],
                                     reportsDirectory,
-                                    silent: true,
+                                    silent:     true,
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 83.33,
-                                        fileName: null,
-                                        key: 'lines',
-                                        threshold: 100,
+                                        coverage:   83.33,
+                                        fileName:   null,
+                                        key:        'lines',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 60,
-                                        fileName: null,
-                                        key: 'functions',
-                                        threshold: 100,
+                                        coverage:   60,
+                                        fileName:   null,
+                                        key:        'functions',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 85.71,
-                                        fileName: null,
-                                        key: 'branches',
-                                        threshold: 100,
+                                        coverage:   85.71,
+                                        fileName:   null,
+                                        key:        'branches',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 83.33,
-                                        fileName: null,
-                                        key: 'statements',
-                                        threshold: 100,
+                                        coverage:   83.33,
+                                        fileName:   null,
+                                        key:        'statements',
+                                        threshold:  100,
                                     },
                                 ],
                                 message:
@@ -460,32 +460,32 @@ describe
                             c8js.checkCoverage
                             ({ 100: true, exclude: 'test/*.js', reportsDirectory }),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 83.33,
-                                        fileName: null,
-                                        key: 'lines',
-                                        threshold: 100,
+                                        coverage:   83.33,
+                                        fileName:   null,
+                                        key:        'lines',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 60,
-                                        fileName: null,
-                                        key: 'functions',
-                                        threshold: 100,
+                                        coverage:   60,
+                                        fileName:   null,
+                                        key:        'functions',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 85.71,
-                                        fileName: null,
-                                        key: 'branches',
-                                        threshold: 100,
+                                        coverage:   85.71,
+                                        fileName:   null,
+                                        key:        'branches',
+                                        threshold:  100,
                                     },
                                     {
-                                        coverage: 83.33,
-                                        fileName: null,
-                                        key: 'statements',
-                                        threshold: 100,
+                                        coverage:   83.33,
+                                        fileName:   null,
+                                        key:        'statements',
+                                        threshold:  100,
                                     },
                                 ],
                                 message:
@@ -549,10 +549,10 @@ describe
                             c8js.report
                             (
                                 {
-                                    checkCoverage: true,
-                                    exclude: 'test/*.js',
-                                    lines: 90,
-                                    reporter: 'json',
+                                    checkCoverage:  true,
+                                    exclude:        'test/*.js',
+                                    lines:          90,
+                                    reporter:       'json',
                                     reportsDirectory,
                                 },
                             ),
@@ -583,10 +583,10 @@ describe
                         (
                             joinPath('test/fixtures/c8/import.mjs'),
                             {
-                                exclude: 'test/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -612,10 +612,10 @@ describe
                         (
                             joinPath('test/fixtures/c8/c8-ignore-next.js'),
                             {
-                                exclude: 'test/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -635,10 +635,10 @@ describe
                         (
                             joinPath('test/fixtures/c8/issue-254.js'),
                             {
-                                exclude: 'test/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -664,10 +664,10 @@ describe
                         (
                             joinPath('test/fixtures/c8/c8-ignore-start-stop.js'),
                             {
-                                exclude: 'test/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -829,10 +829,10 @@ describe
                                     TS_NODE_PATH,
                                     [joinPath('test/fixtures/c8/ts-node-basic.ts')],
                                     {
-                                        exclude: 'test/*.js',
-                                        reporter: 'json',
+                                        exclude:    'test/*.js',
+                                        reporter:   'json',
                                         reportsDirectory,
-                                        silent: true,
+                                        silent:     true,
                                     },
                                 );
                                 await assertReportMatches.json(testName, result);
@@ -871,14 +871,14 @@ describe
                         (
                             'test/fixtures/c8/all/vanilla/main.js',
                             {
-                                all: true,
-                                cwd: joinPath(),
+                                all:        true,
+                                cwd:        joinPath(),
                                 // add an exclude to avoid default excludes of test/**
-                                exclude: '**/*.ts',
-                                include: 'test/fixtures/c8/all/vanilla/**/*.js',
-                                reporter: 'json',
+                                exclude:    '**/*.ts',
+                                include:    'test/fixtures/c8/all/vanilla/**/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -898,14 +898,14 @@ describe
                         (
                             'test/fixtures/c8/all/ts-compiled/main.js',
                             {
-                                all: true,
-                                cwd: joinPath(),
+                                all:        true,
+                                cwd:        joinPath(),
                                 // add an exclude to avoid default excludes of test/**
-                                exclude: 'test/*.js',
-                                include: 'test/fixtures/c8/all/ts-compiled/**/*.js',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                include:    'test/fixtures/c8/all/ts-compiled/**/*.js',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -926,14 +926,14 @@ describe
                             TS_NODE_PATH,
                             ['test/fixtures/c8/all/ts-only/main.ts'],
                             {
-                                all: true,
-                                cwd: joinPath(),
+                                all:        true,
+                                cwd:        joinPath(),
                                 // add an exclude to avoid default excludes of test/**
-                                exclude: 'test/*.js',
-                                include: 'test/fixtures/c8/all/ts-only/**/*.ts',
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                include:    'test/fixtures/c8/all/ts-only/**/*.ts',
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -954,27 +954,27 @@ describe
                             (
                                 'test/fixtures/c8/all/vanilla/main.js',
                                 {
-                                    all: true,
-                                    checkCoverage: true,
-                                    cwd: joinPath(),
+                                    all:            true,
+                                    checkCoverage:  true,
+                                    cwd:            joinPath(),
                                     // add an exclude to avoid default excludes of test/**
-                                    exclude: '**/*.ts',
-                                    include: 'test/fixtures/c8/all/vanilla/**/*.js',
-                                    lines: 100,
-                                    reporter: 'json',
+                                    exclude:        '**/*.ts',
+                                    include:        'test/fixtures/c8/all/vanilla/**/*.js',
+                                    lines:          100,
+                                    reporter:       'json',
                                     reportsDirectory,
-                                    silent: true,
+                                    silent:         true,
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 64.28,
-                                        fileName: null,
-                                        key: 'lines',
-                                        threshold: 100,
+                                        coverage:   64.28,
+                                        fileName:   null,
+                                        key:        'lines',
+                                        threshold:  100,
                                     },
                                 ],
                                 message:
@@ -995,15 +995,15 @@ describe
                         const reportsDirectory = joinPath('tmp', testName);
                         const options =
                         {
-                            all: true,
-                            cwd: joinPath(),
+                            all:        true,
+                            cwd:        joinPath(),
                             // add an exclude to avoid default excludes of test/**
-                            exclude: '**/*.ts',
-                            include: 'test/fixtures/c8/all/vanilla/**/*.js',
-                            lines: 90,
-                            reporter: 'json',
+                            exclude:    '**/*.ts',
+                            include:    'test/fixtures/c8/all/vanilla/**/*.js',
+                            lines:      90,
+                            reporter:   'json',
                             reportsDirectory,
-                            silent: true,
+                            silent:     true,
                         };
                         // generate V8 output
                         await c8js
@@ -1016,14 +1016,14 @@ describe
                         (
                             c8js.checkCoverage(options),
                             {
-                                code: 'LOW_COVERAGE',
+                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
                                 fails:
                                 [
                                     {
-                                        coverage: 64.28,
-                                        fileName: null,
-                                        key: 'lines',
-                                        threshold: 90,
+                                        coverage:   64.28,
+                                        fileName:   null,
+                                        key:        'lines',
+                                        threshold:  90,
                                     },
                                 ],
                                 message:
@@ -1048,11 +1048,11 @@ describe
                 (
                     'test/fixtures/c8/computed-method.js',
                     {
-                        cwd: joinPath(),
-                        exclude: 'test/*.js',
-                        reporter: 'cobertura',
+                        cwd:        joinPath(),
+                        exclude:    'test/*.js',
+                        reporter:   'cobertura',
                         reportsDirectory,
-                        silent: true,
+                        silent:     true,
                     },
                 );
                 const rawReport =
@@ -1100,11 +1100,11 @@ describe
                         (
                             joinPath('test/fixtures/c8/source-maps/branches/branches.rollup.js'),
                             {
-                                exclude: ['test/*.js', '**/branch-1.js'],
-                                excludeAfterRemap: true,
-                                reporter: 'json',
+                                exclude:            ['test/*.js', '**/branch-1.js'],
+                                excludeAfterRemap:  true,
+                                reporter:           'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:             true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -1131,11 +1131,11 @@ describe
                             process.execPath,
                             [joinPath('test/fixtures/c8/custom-ext.special')],
                             {
-                                exclude: 'test/*.js',
-                                extension: ['.js', '.special'],
-                                reporter: 'json',
+                                exclude:    'test/*.js',
+                                extension:  ['.js', '.special'],
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
@@ -1155,13 +1155,13 @@ describe
                             process.execPath,
                             ['custom-ext.special'],
                             {
-                                all: true,
-                                cwd: joinPath('test/fixtures/c8'),
-                                exclude: '**/*.ts',
-                                extension: ['.js', '.special'],
-                                reporter: 'json',
+                                all:        true,
+                                cwd:        joinPath('test/fixtures/c8'),
+                                exclude:    '**/*.ts',
+                                extension:  ['.js', '.special'],
+                                reporter:   'json',
                                 reportsDirectory,
-                                silent: true,
+                                silent:     true,
                             },
                         );
                         await assertReportMatches.json(testName, result);
