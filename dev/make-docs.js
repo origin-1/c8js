@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import { writeFile }                    from 'fs/promises';
+import { copyFile, writeFile }          from 'fs/promises';
 import { Application, TSConfigReader }  from 'typedoc';
 import { fileURLToPath }                from 'url';
 
 process.chdir(fileURLToPath(new URL('..', import.meta.url)));
+const docsDirName = 'docs';
 const options =
 {
     disableSources:     true,
@@ -20,8 +21,13 @@ const app = new Application();
 app.options.addReader(new TSConfigReader());
 app.bootstrap(options);
 const project = app.convert();
-await app.renderer.render(project, 'docs');
+await app.renderer.render(project, docsDirName);
 if (app.logger.hasErrors())
     throw Error('Error generating documentation');
+const promises = [];
 if (!process.argv.includes('--no-gitignore', 2))
-    await writeFile('docs/.gitignore', '*\n');
+    promises.push(writeFile(`${docsDirName}/.gitignore`, '*\n'));
+const srcFileName = 'comparison.svg';
+const destFileName = `${docsDirName}/${srcFileName}`;
+promises.push(copyFile(srcFileName, destFileName));
+await promises;
