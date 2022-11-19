@@ -297,7 +297,7 @@ describe
                             c8js.checkCoverage
                             ({ exclude: 'test/*.js', lines: 90, reportsDirectory }),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
@@ -335,7 +335,7 @@ describe
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
@@ -405,7 +405,7 @@ describe
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
@@ -460,7 +460,7 @@ describe
                             c8js.checkCoverage
                             ({ 100: true, exclude: 'test/*.js', reportsDirectory }),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
@@ -967,7 +967,7 @@ describe
                                 },
                             ),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
@@ -1016,7 +1016,7 @@ describe
                         (
                             c8js.checkCoverage(options),
                             {
-                                code: 'LOW_COVERAGE', // eslint-disable-line key-spacing
+                                code: 'LOW_COVERAGE',
                                 fails:
                                 [
                                     {
