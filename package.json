@@ -42,12 +42,6 @@
     "typedoc-plugin-markdown": "latest",
     "typescript": "latest"
   },
-  "overrides": {
-    "c8": {
-      "foreground-child": "file:../_EXCLUDED_",
-      "rimraf": "file:../_EXCLUDED_"
-    }
-  },
   "engines": {
     "node": ">=14"
   },
