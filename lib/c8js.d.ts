@@ -386,7 +386,7 @@ declare namespace exec
          *
          * @defaultValue `'early'`
          */
-         throwExecError?:   'early' | 'late' | 'never' | undefined;
+        throwExecError?:    'early' | 'late' | 'never' | undefined;
 
         /**
          * The maximum amount of time the process is allowed to run in milliseconds.

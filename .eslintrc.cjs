@@ -1,3 +1,5 @@
+'use strict';
+
 const { createConfig } = require('@origin-1/eslint-config');
 
 module.exports =
@@ -6,6 +8,9 @@ createConfig
     {
         files:          ['*.cjs', '*.js'],
         jsVersion:      2020,
+    },
+    {
+        files:          '*.js',
         parserOptions:  { sourceType: 'module' },
     },
     {

@@ -24,7 +24,7 @@
     "build-no-install": "node dev/clean && npm run lint && node dev/coverage && node dev/make-docs",
     "clean": "node dev/clean",
     "coverage": "node dev/coverage",
-    "lint": "eslint . --ignore-path .gitignore --ignore-pattern test/fixtures",
+    "lint": "eslint . --format compact --ignore-path .gitignore --ignore-pattern test/fixtures",
     "make-docs": "node dev/make-docs",
     "test": "mocha --check-leaks --timeout=10000 test/*.spec.js"
   },
