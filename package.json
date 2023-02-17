@@ -26,6 +26,7 @@
     "coverage": "node dev/coverage",
     "lint": "eslint . --format compact --ignore-path .gitignore --ignore-pattern test/fixtures",
     "make-docs": "node dev/make-docs",
+    "release": "git add CHANGELOG.md && npm version -f -m 'Version %s'",
     "test": "mocha --check-leaks --timeout=10000 test/*.spec.js"
   },
   "dependencies": {
