@@ -439,6 +439,12 @@ declare namespace report
         reporter?:      string | string[] | undefined;
 
         /**
+         * An object mapping reporter names to additional options passed directly to the respective
+         * reporters.
+         */
+        reporterOptions?: Record<string, Record<string, unknown>>;
+
+        /**
          * If `true`, files with 100% statement, branch, and function coverage will not be shown by
          * the text reporter.
          *

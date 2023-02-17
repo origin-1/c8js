@@ -4,6 +4,7 @@ import { createTempDirectory, joinPath, loadJSON }  from './utils.js';
 import { strict as assert }                         from 'assert';
 import c8js                                         from 'c8js';
 import { join }                                     from 'path';
+import { fileURLToPath }                            from 'url';
 
 describe
 (
@@ -49,6 +50,36 @@ describe
                 );
                 const report = await loadJSON(join(reportsDirectory, 'coverage-final.json'));
                 assert.notDeepEqual(report, { });
+            },
+        );
+
+        it
+        (
+            'creates a reporter with the expected options',
+            async () =>
+            {
+                const cwd = joinPath('test/fixtures');
+                const reporter = fileURLToPath(new URL('./custom-reporter.cjs', import.meta.url));
+                let actualOptions;
+                const callback =
+                options =>
+                {
+                    actualOptions = options;
+                };
+                const reporterOptions = { [reporter]: { callback, foo: 'bar', maxCols: 200 } };
+                await c8js.report({ cwd, reporter, reporterOptions, reportsDirectory });
+                assert.deepEqual
+                (
+                    actualOptions,
+                    {
+                        callback,
+                        foo:            'bar',
+                        maxCols:        200,
+                        projectRoot:    cwd,
+                        skipEmpty:      false,
+                        skipFull:       false,
+                    },
+                );
             },
         );
     },
