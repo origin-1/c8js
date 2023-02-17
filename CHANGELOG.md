@@ -1,3 +1,9 @@
+<a name="v0.4.0"></a>
+## [v0.4.0](https://github.com/origin-1/c8js/releases/tag/v0.4.0) (2023-02-17)
+
+* New option `reporterOptions`, added in c8 7.13.0.
+* Improved documentation.
+
 <a name="v0.3.0"></a>
 ## [v0.3.0](https://github.com/origin-1/c8js/releases/tag/v0.3.0) (2022-09-26)
 
