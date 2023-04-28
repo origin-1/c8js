@@ -19,7 +19,7 @@ const options =
 };
 const app = new Application();
 app.options.addReader(new TSConfigReader());
-app.bootstrap(options);
+await app.bootstrapWithPlugins(options);
 const project = app.convert();
 await app.renderer.render(project, docsDirName);
 if (app.logger.hasErrors())
