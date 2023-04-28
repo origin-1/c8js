@@ -138,5 +138,5 @@ await createCoverage({ src: ['lib', 'src/app'], timeout: 300 * 1000 });
 
 c8js requires Node.js 14 or later.
 
-[npm badge]: https://badge.fury.io/js/c8js.svg
+[npm badge]: https://img.shields.io/npm/v/c8js?logo=npm
 [npm url]: https://www.npmjs.com/package/c8js
