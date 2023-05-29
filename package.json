@@ -24,7 +24,7 @@
     "build-no-install": "node dev/clean && npm run lint && node dev/coverage && node dev/make-docs",
     "clean": "node dev/clean",
     "coverage": "node dev/coverage",
-    "lint": "eslint . --format compact --ignore-path .gitignore --ignore-pattern test/fixtures",
+    "lint": "eslint . --format compact",
     "make-docs": "node dev/make-docs",
     "release": "git add CHANGELOG.md && npm version -f -m 'Version %s'",
     "test": "mocha --check-leaks --timeout=10000 test/*.spec.js"
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@origin-1/eslint-config": "latest",
+    "eslint": "latest",
     "mocha": "latest",
     "ts-node": "latest",
     "typedoc": "latest",
