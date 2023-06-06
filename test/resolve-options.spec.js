@@ -49,6 +49,7 @@ describe
                         const config =
                         await resolveOptions({ c8Config: 'subdir/c8-config.json', cwd });
                         assert.equal(config.excludeAfterRemap, true);
+                        assert.equal(config.mergeAsync, true);
                         assert.equal(config.omitRelative, false);
                         assert.equal(config.reportsDirectory, join(cwd, 'xyz'));
                         assert.deepEqual
@@ -97,6 +98,7 @@ describe
                         await resolveOptions
                         ({ c8Config: 'subdir/c8-config.json', cwd, useC8Config: false });
                         assert.equal(config.excludeAfterRemap, false);
+                        assert.equal(config.mergeAsync, false);
                         assert.equal(config.omitRelative, true);
                         assert.equal(config.reportsDirectory, join(cwd, 'coverage'));
                         assert.equal(config.src, cwd);

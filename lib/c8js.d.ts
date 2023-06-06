@@ -232,6 +232,13 @@ declare namespace checkCoverage
         lines?:                 number | undefined;
 
         /**
+         * Merges all V8 coverage reports asynchronously and incrementally to avoid OOM issues.
+         *
+         * @defaultValue `false`
+         */
+        mergeAsync?:            boolean | undefined;
+
+        /**
          * Checks thresholds on a per-file basis.
          *
          * @defaultValue `false`

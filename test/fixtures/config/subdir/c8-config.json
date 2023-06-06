@@ -1,6 +1,7 @@
 {
   "extends": ".c8rc",
   "omitRelative": true,
+  "merge-async": true,
   "watermarks": {
     "lines": [20, 80]
   }
