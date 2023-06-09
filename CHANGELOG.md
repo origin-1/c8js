@@ -1,3 +1,9 @@
+<a name="v0.5.0"></a>
+## [v0.5.0](https://github.com/origin-1/c8js/releases/tag/v0.5.0) (2023-06-09)
+
+* New option `mergeAsync`, added in c8 7.14.0.
+* Updated npm badge.
+
 <a name="v0.4.0"></a>
 ## [v0.4.0](https://github.com/origin-1/c8js/releases/tag/v0.4.0) (2023-02-17)
 
