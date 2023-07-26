@@ -48,7 +48,10 @@
     "node": ">=14"
   },
   "exports": {
-    ".": "./lib/c8js.js",
+    ".": {
+      "import": "./lib/c8js.js",
+      "require": "./lib/c8js.cjs"
+    },
     "./package.json": "./package.json"
   },
   "type": "module",
