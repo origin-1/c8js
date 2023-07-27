@@ -165,7 +165,7 @@ describe
                     exclude:    [],
                     tempDirectory,
                 };
-                await c8js.exec(joinPath('test/fixtures/50-percent.js'), options);
+                await c8js.exec(joinPath('test/fixtures/thresholds/50-percent.js'), options);
                 await assert.rejects(c8js.checkCoverage(options), { code: 'LOW_COVERAGE' });
             },
         );
