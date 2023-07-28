@@ -51,12 +51,41 @@ interface CommonOptions
     useC8Config?:       boolean | undefined;
 }
 
+/** A shortfall in code coverage. */
+interface Fail
+{
+    /**
+     * The relative path of the file failing code coverage check if the option `perFile` was set to
+     * `true`, or `null` otherwise.
+     */
+    fileName:   string | null;
+
+    /**
+     * The measure failing code coverage check.
+     * It can be one of `'branches'`, `'functions'`, `'lines'`, or `'statements'`.
+     */
+    key:        'branches' | 'functions' | 'lines' | 'statements';
+
+    /** The threshold for the specified measure, in percentage. */
+    threshold:  number;
+
+    /** The actual code coverage for the specified measure, in percentage. */
+    coverage:   number;
+}
+
 type InheritableC8Options =
 Undefinedable<Omit<ConstructorParameters<typeof Report>[0], 'reporter' | 'src' | 'watermarks'>>;
 
+/** Error thrown when code coverage is under the specified thresholds. */
+declare class LowCoverageError extends Error
+{
+    /** A list of shortfalls in code coverage. */
+    public fails: Fail[];
+}
+
 type Undefinedable<Type> = { [Key in keyof Type]: Type[Key] | undefined; };
 
-/** Thresholds for low and high code coverage watermarks. */
+/** Thresholds for low and high code coverage watermarks, in percentage. */
 type Watermark = [low: number, high: number];
 
 /**
@@ -107,6 +136,9 @@ interface Watermarks
  * [`child_process.spawnSync`](
  * https://nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options) with an
  * additional property holding the coverage map.
+ * If the option {@link report.Options.checkCoverage `checkCoverage`} (or `100`) is set to `true`
+ * and code coverage is under the specified thresholds, the promise will reject with a {@link
+ * LowCoverageError `LowCoverageError`}.
  */
 declare const c8js:
 {
@@ -141,8 +173,10 @@ declare namespace c8js
  * Options for the function.
  *
  * @returns
- * A promise that resolves if code coverage is within the thresholds, and rejects otherwise, or if
- * an error occurs.
+ * A promise that resolves if code coverage is within the thresholds, and rejects if an error
+ * occurs.
+ * If code coverage is under the specified thresholds, the promise will reject with a {@link
+ * LowCoverageError `LowCoverageError`}.
  */
 declare function checkCoverage
 (options?: checkCoverage.Options & Partial<c8js.Options>):
@@ -414,15 +448,17 @@ declare namespace exec
 }
 
 /**
- * Generates a coverage report and optionally checks that code coverage is
- * within the specified thresholds.
+ * Generates a coverage report and optionally checks that code coverage is within the specified
+ * thresholds.
  *
  * @param options
  * Options for the function.
  *
  * @returns
- * A promise that resolves with a coverage map, and rejects if code coverage is not within the
- * thresholds, or if an error occurs.
+ * A promise that resolves with a coverage map, and rejects if an error occurs.
+ * If the option {@link report.Options.checkCoverage `checkCoverage`} (or `100`) is set to `true`
+ * and code coverage is under the specified thresholds, the promise will reject with a {@link
+ * LowCoverageError `LowCoverageError`}.
  */
 declare function report(options?: report.Options & Partial<c8js.Options>): Promise<CoverageMap>;
 
@@ -468,4 +504,4 @@ declare namespace report
 declare const version: string;
 
 export { c8js as default, checkCoverage, commands, exec, report, version };
-export type { Watermark, Watermarks };
+export type { Fail, LowCoverageError, Watermark, Watermarks };
