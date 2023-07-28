@@ -1,3 +1,11 @@
+<a name="v0.6.0"></a>
+## [v0.6.0](https://github.com/origin-1/c8js/releases/tag/v0.6.0) (2023-07-28)
+
+* Added CommonJS export.
+* When the option `perFile` is set to `true`, a thrown `LowCoverageError` will contain a list of
+all fails, not just of the fails in one file.
+* Added type definitions and API documentation for the types `LowCoverageError` and `Fail`.
+
 <a name="v0.5.0"></a>
 ## [v0.5.0](https://github.com/origin-1/c8js/releases/tag/v0.5.0) (2023-06-09)
 

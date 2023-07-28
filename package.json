@@ -1,6 +1,6 @@
 {
   "name": "c8js",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A modern, asynchronous Node.js API for c8",
   "keywords": [
     "api",
