@@ -17,10 +17,9 @@ const options =
     plugin:             'typedoc-plugin-markdown',
     tsconfig:           'tsconfig.json',
 };
-const app = new Application();
-app.options.addReader(new TSConfigReader());
-await app.bootstrapWithPlugins(options);
-const project = app.convert();
+const tsConfigReader = new TSConfigReader();
+const app = await Application.bootstrapWithPlugins(options, [tsConfigReader]);
+const project = await app.convert();
 await app.renderer.render(project, docsDirName);
 if (app.logger.hasErrors())
     throw Error('Error generating documentation');
