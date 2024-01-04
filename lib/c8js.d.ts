@@ -136,9 +136,9 @@ interface Watermarks
  * [`child_process.spawnSync`](
  * https://nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options) with an
  * additional property holding the coverage map.
- * If the option {@link report.Options.checkCoverage `checkCoverage`} (or `100`) is set to `true`
- * and code coverage is under the specified thresholds, the promise will reject with a {@link
- * LowCoverageError `LowCoverageError`}.
+ * If the option {@link report.Options.checkCoverage `checkCoverage`} (or {@link 100 `100`}) is set
+ * to `true` and code coverage is under the specified thresholds, the promise will reject with a
+ * {@link LowCoverageError `LowCoverageError`}.
  */
 declare const c8js:
 {
@@ -206,7 +206,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of branches that must be covered for the check to pass.
-         * This setting is ignored if option {@link "100" `100`} is used.
+         * This setting is ignored if option {@link 100 `100`} is used.
          *
          * @defaultValue `0`
          */
@@ -243,7 +243,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of functions that must be covered for the check to pass.
-         * This setting is ignored if option {@link "100" `100`} is used.
+         * This setting is ignored if option {@link 100 `100`} is used.
          *
          * @defaultValue `0`
          */
@@ -259,7 +259,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of lines that must be covered for the check to pass.
-         * This setting is ignored if option {@link "100" `100`} is used.
+         * This setting is ignored if option {@link 100 `100`} is used.
          *
          * @defaultValue `90`
          */
@@ -288,7 +288,7 @@ declare namespace checkCoverage
 
         /**
          * Percentage of statements that must be covered for the check to pass.
-         * This setting is ignored if option {@link "100" `100`} is used.
+         * This setting is ignored if option {@link 100 `100`} is used.
          *
          * @defaultValue `0`
          */
@@ -456,9 +456,9 @@ declare namespace exec
  *
  * @returns
  * A promise that resolves with a coverage map, and rejects if an error occurs.
- * If the option {@link report.Options.checkCoverage `checkCoverage`} (or `100`) is set to `true`
- * and code coverage is under the specified thresholds, the promise will reject with a {@link
- * LowCoverageError `LowCoverageError`}.
+ * If the option {@link report.Options.checkCoverage `checkCoverage`} (or {@link 100 `100`}) is set
+ * to `true` and code coverage is under the specified thresholds, the promise will reject with a
+ * {@link LowCoverageError `LowCoverageError`}.
  */
 declare function report(options?: report.Options & Partial<c8js.Options>): Promise<CoverageMap>;
 
@@ -468,7 +468,7 @@ declare namespace report
     {
         /**
          * Whether to check that code coverage is within the specified thresholds.
-         * This setting is ignored if option {@link "100" `100`} is used.
+         * This setting is ignored if option {@link 100 `100`} is used.
          *
          * @defaultValue `false`
          */
