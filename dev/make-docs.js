@@ -20,9 +20,11 @@ const options =
 const tsConfigReader = new TSConfigReader();
 const app = await Application.bootstrapWithPlugins(options, [tsConfigReader]);
 const project = await app.convert();
+app.validate(project);
+const { logger } = app;
+if (logger.hasErrors() || logger.hasWarnings())
+    throw Error('Problems occurred while generating the documentation');
 await app.renderer.render(project, docsDirName);
-if (app.logger.hasErrors())
-    throw Error('Error generating documentation');
 const promises = [];
 if (!process.argv.includes('--no-gitignore', 2))
     promises.push(writeFile(`${docsDirName}/.gitignore`, '*\n'));
