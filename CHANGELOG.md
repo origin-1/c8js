@@ -1,3 +1,10 @@
+<a name="v0.6.1"></a>
+## [v0.6.1](https://github.com/origin-1/c8js/releases/tag/v0.6.1) (2024-01-05)
+
+* Added support for c8 9.0.0.
+* Removed unused transitive dependency [foreground-child](https://www.npmjs.com/package/foreground-child).
+* Updated documentation.
+
 <a name="v0.6.0"></a>
 ## [v0.6.0](https://github.com/origin-1/c8js/releases/tag/v0.6.0) (2023-07-28)
 
