@@ -10,7 +10,6 @@ const options =
 {
     disableSources:     true,
     entryPoints:        'lib/c8js.d.ts',
-    excludeExternals:   true,
     githubPages:        false,
     hideBreadcrumbs:    true,
     name:               'c8js',

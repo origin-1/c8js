@@ -40,7 +40,7 @@
     "eslint": "latest",
     "mocha": "latest",
     "ts-node": "latest",
-    "typedoc": "0.25.4",
+    "typedoc": "latest",
     "typedoc-plugin-markdown": "latest",
     "typescript": "latest"
   },
