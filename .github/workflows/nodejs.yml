@@ -33,23 +33,25 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['14.0.0', '21']
-        runs-on: [macos-latest, ubuntu-latest, windows-latest]
+        node-version: ['14.0.0', '14', '16', '18', '20', '21']
+        runs-on: [ubuntu-latest]
         include:
-        - node-version: '14'
-          runs-on: ubuntu-latest
-        - node-version: '16'
-          runs-on: ubuntu-latest
-        - node-version: '18'
-          runs-on: ubuntu-latest
-        - node-version: '20'
-          runs-on: ubuntu-latest
+        - node-version: '14.0.0'
+          architecture: x64
+          runs-on: macos-latest
+        - node-version: '14.0.0'
+          runs-on: windows-latest
+        - node-version: '21'
+          runs-on: macos-latest
+        - node-version: '21'
+          runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+        architecture: ${{ matrix.architecture }}
     - run: |
         npm install
         npm test
