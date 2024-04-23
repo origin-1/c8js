@@ -36,7 +36,7 @@
     "which": "4.0.0"
   },
   "devDependencies": {
-    "@origin-1/eslint-config": "latest",
+    "@origin-1/eslint-config": "eslint-8",
     "eslint": "latest",
     "mocha": "latest",
     "ts-node": "latest",

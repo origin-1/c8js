@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { copyFile, writeFile }          from 'fs/promises';
+import { copyFile, writeFile }          from 'node:fs/promises';
+import { fileURLToPath }                from 'node:url';
 import { Application, TSConfigReader }  from 'typedoc';
-import { fileURLToPath }                from 'url';
 
 process.chdir(fileURLToPath(new URL('..', import.meta.url)));
 const docsDirName = 'docs';

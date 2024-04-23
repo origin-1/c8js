@@ -1,8 +1,8 @@
-import type { Report }                              from 'c8';
-import type { ProcessEnvOptions, SpawnSyncReturns } from 'child_process';
-import type { CoverageMap }                         from 'istanbul-lib-coverage';
+import type { ProcessEnvOptions, SpawnSyncReturns } from 'node:child_process';
 // eslint-disable-next-line n/prefer-global/url
-import type { URL }                                 from 'url';
+import type { URL }                                 from 'node:url';
+import type { Report }                              from 'c8';
+import type { CoverageMap }                         from 'istanbul-lib-coverage';
 import                                              'node';
 
 interface CommonOptions
