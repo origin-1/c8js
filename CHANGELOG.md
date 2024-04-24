@@ -1,3 +1,9 @@
+<a name="v0.7.0"></a>
+## [v0.7.0](https://github.com/origin-1/c8js/releases/tag/v0.7.0) (2024-04-24)
+
+* On Windows, `commands.npm` and `commands.npx` will now resolve to the path of a .js file, not a .cmd file like in previous versions of c8js. This is because new versions of Node.js prevent the execution of .cmd files on Windows when no shell process is spawned (see [the announcement](https://nodejs.org/en/blog/vulnerability/april-2024-security-releases-2)).
+* Fixed documentation pages.
+
 <a name="v0.6.2"></a>
 ## [v0.6.2](https://github.com/origin-1/c8js/releases/tag/v0.6.2) (2024-02-06)
 
