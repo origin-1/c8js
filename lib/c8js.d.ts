@@ -443,8 +443,7 @@ declare namespace exec
         uid?:               number | undefined;
     }
 
-    interface Result extends SpawnSyncReturns<string | Buffer>
-    { }
+    type Result = SpawnSyncReturns<string | Buffer>;
 }
 
 /**

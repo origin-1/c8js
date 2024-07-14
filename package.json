@@ -36,8 +36,9 @@
     "which": "4.0.0"
   },
   "devDependencies": {
-    "@origin-1/eslint-config": "eslint-8",
+    "@origin-1/eslint-config": "latest",
     "eslint": "latest",
+    "eslint-formatter-compact": "latest",
     "mocha": "latest",
     "ts-node": "latest",
     "typedoc": "latest",

@@ -16,7 +16,7 @@ export default createFlatConfig
         languageOptions:    { parserOptions: { project: 'tsconfig.json' } },
     },
     {
-        languageOptions: { globals: { ...globals.node } },
+        languageOptions: { globals: { ...globals.nodeBuiltin } },
     },
     {
         files:      ['dev/*.js'],

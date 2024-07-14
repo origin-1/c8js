@@ -1,12 +1,11 @@
 name: Node.js CI
 
 on:
-  pull_request:
-    branches-ignore:
-      - docs
   push:
-    branches-ignore:
-      - docs
+    branches-ignore: docs
+    tags-ignore: '**'
+  pull_request:
+    branches-ignore: docs
 
 jobs:
 
