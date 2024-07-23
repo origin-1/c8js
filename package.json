@@ -32,7 +32,7 @@
   "dependencies": {
     "@types/istanbul-lib-coverage": "2",
     "@types/node": ">=14",
-    "c8": ">=8 <=9.1.0",
+    "c8": ">=8 <=10.1.2",
     "which": "4.0.0"
   },
   "devDependencies": {

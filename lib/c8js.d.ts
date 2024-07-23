@@ -478,13 +478,13 @@ declare namespace report
          *
          * @defaultValue `'text'`
          */
-        reporter?:      string | string[] | undefined;
+        reporter?:          string | string[] | undefined;
 
         /**
          * An object mapping reporter names to additional options passed directly to the respective
          * reporters.
          */
-        reporterOptions?: Record<string, Record<string, unknown>>;
+        reporterOptions?:   Record<string, Record<string, unknown>>;
 
         /**
          * If `true`, files with 100% statement, branch, and function coverage will not be shown by
@@ -492,10 +492,10 @@ declare namespace report
          *
          * @defaultValue `false`
          */
-        skipFull?:      boolean | undefined;
+        skipFull?:          boolean | undefined;
 
         /** Thresholds for low and high code coverage watermarks, exposed by some reporters. */
-        watermarks?:    Watermarks | undefined;
+        watermarks?:        Watermarks | undefined;
     }
 }
 
