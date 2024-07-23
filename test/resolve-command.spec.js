@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-import resolveCommand       from '../lib/resolve-command.js';
-import { strict as assert } from 'assert';
+import assert           from 'node:assert/strict';
+import resolveCommand   from '../lib/resolve-command.js';
 
 describe
 (

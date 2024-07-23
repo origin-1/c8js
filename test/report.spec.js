@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
+import assert                                       from 'node:assert/strict';
+import { join }                                     from 'node:path';
+import { fileURLToPath }                            from 'node:url';
 import { createTempDirectory, joinPath, loadJSON }  from './utils.js';
-import { strict as assert }                         from 'assert';
 import c8js                                         from 'c8js';
-import { join }                                     from 'path';
-import { fileURLToPath }                            from 'url';
 
 describe
 (

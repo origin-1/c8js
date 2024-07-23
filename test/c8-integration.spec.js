@@ -11,14 +11,14 @@ The following tests are not included:
 
 /* eslint-env mocha */
 
+import assert                                                   from 'node:assert/strict';
+import { readFile, writeFile }                                  from 'node:fs/promises';
+import { createRequire }                                        from 'node:module';
+import { join }                                                 from 'node:path';
+import { pathToFileURL }                                        from 'node:url';
 import { createDirectory, deleteDirectory, standardizePath }    from '../lib/utils.js';
 import { joinPath, loadJSON, projectRoot }                      from './utils.js';
-import { strict as assert }                                     from 'assert';
 import c8js                                                     from 'c8js';
-import { readFile, writeFile }                                  from 'fs/promises';
-import { createRequire }                                        from 'module';
-import { join }                                                 from 'path';
-import { pathToFileURL }                                        from 'url';
 
 const TS_NODE_PATH = createRequire(import.meta.url).resolve('ts-node/dist/bin');
 

@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 
-import { createTempDirectory, joinPath }  from './utils.js';
-import { strict as assert }     from 'assert';
-import { createRequire }        from 'module';
+import { createTempDirectory, joinPath }    from './utils.js';
+import assert                               from 'node:assert/strict';
+import { createRequire }                    from 'node:module';
 
 describe
 (

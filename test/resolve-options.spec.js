@@ -1,11 +1,11 @@
 /* eslint-env mocha */
 
+import assert               from 'node:assert/strict';
+import { tmpdir }           from 'node:os';
+import { join }             from 'node:path';
+import { pathToFileURL }    from 'node:url';
 import resolveOptions       from '../lib/resolve-options.js';
 import { joinPath }         from './utils.js';
-import { strict as assert } from 'assert';
-import { tmpdir }           from 'os';
-import { join }             from 'path';
-import { pathToFileURL }    from 'url';
 
 describe
 (

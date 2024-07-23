@@ -8,7 +8,7 @@ export default createFlatConfig
     },
     {
         files:      ['**/*.cjs', '**/*.js'],
-        jsVersion:  2020,
+        jsVersion:  2021,
     },
     {
         files:              ['**/*.ts'],

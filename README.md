@@ -136,7 +136,7 @@ await createCoverage({ src: ['lib', 'src/app'], timeout: 300 * 1000 });
 
 ## Compatibility
 
-c8js requires Node.js 14 or later.
+c8js requires Node.js 16 or later.
 The minimum supported c8 version is 8.0.0.
 
 [npm badge]: https://img.shields.io/npm/v/c8js?logo=npm

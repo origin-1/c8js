@@ -32,13 +32,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['14.0.0', '14', '16', '18', '20', '22']
+        node-version: ['16.0.0', '16', '18', '20', '22']
         runs-on: [ubuntu-latest]
         include:
-        - node-version: '14.0.0'
+        - node-version: '16.0.0'
           architecture: x64
           runs-on: macos-latest
-        - node-version: '14.0.0'
+        - node-version: '16.0.0'
           runs-on: windows-latest
         - node-version: '22'
           runs-on: macos-latest
@@ -52,7 +52,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         architecture: ${{ matrix.architecture }}
     - run: |
-        npm install
+        npm install --legacy-peer-deps
         npm test
 
   make-docs:

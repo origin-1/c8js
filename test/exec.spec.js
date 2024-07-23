@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
+import assert                                                       from 'node:assert/strict';
 import { assertStackTraceConnected, createTempDirectory, joinPath } from './utils.js';
-import { strict as assert }                                         from 'assert';
 import c8js, { version as c8js_version, commands }                  from 'c8js';
 
 describe

@@ -1,8 +1,8 @@
-import { AssertionError }       from 'assert';
-import { mkdtemp, readFile }    from 'fs/promises';
-import { tmpdir }               from 'os';
-import { join }                 from 'path';
-import { fileURLToPath }        from 'url';
+import { AssertionError }       from 'node:assert';
+import { mkdtemp, readFile }    from 'node:fs/promises';
+import { tmpdir }               from 'node:os';
+import { join }                 from 'node:path';
+import { fileURLToPath }        from 'node:url';
 
 export function assertStackTraceConnected(stack)
 {

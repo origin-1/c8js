@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 
+import assert                                                       from 'node:assert/strict';
+import { existsSync }                                               from 'node:fs';
+import { join }                                                     from 'node:path';
 import { assertStackTraceConnected, createTempDirectory, joinPath } from './utils.js';
-import { strict as assert }                                         from 'assert';
 import c8js                                                         from 'c8js';
-import { existsSync }                                               from 'fs';
-import { join }                                                     from 'path';
 
 describe
 (
