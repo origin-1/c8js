@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 
 import assert                               from 'node:assert/strict';
+import { realpath, writeFile }              from 'node:fs/promises';
+import { join }                             from 'node:path';
 import { createTempDirectory, joinPath }    from './utils.js';
 import c8js                                 from 'c8js';
 
@@ -62,6 +64,43 @@ describe
                             threshold:  70,
                         },
                     ],
+                );
+            },
+        );
+
+        it
+        (
+            'preserves backslashes in Unix file names',
+            async function ()
+            {
+                if (process.platform === 'win32') this.skip();
+                const cwd = await realpath(await createTempDirectory());
+                await writeFile(join(cwd, 'foo\\bar.js'), '');
+                const promise =
+                c8js.checkCoverage
+                (
+                    {
+                        all:            true,
+                        cwd,
+                        lines:          100,
+                        perFile:        true,
+                        tempDirectory:  '',
+                    },
+                );
+                await assert.rejects
+                (
+                    promise,
+                    {
+                        fails:
+                        [
+                            {
+                                coverage:   0,
+                                fileName:   'foo\\bar.js',
+                                key:        'lines',
+                                threshold:  100,
+                            },
+                        ],
+                    },
                 );
             },
         );
