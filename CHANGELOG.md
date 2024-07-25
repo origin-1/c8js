@@ -1,3 +1,10 @@
+<a name="v0.8.0"></a>
+## [v0.8.0](https://github.com/origin-1/c8js/releases/tag/v0.8.0) (2024-07-25)
+
+* Dropped support for Node.js < 16.
+* Added support for c8 versions up until 10.1.2.
+* Backslashes ("\\") in Unix file names are no longer replaced with forward slashes ("/") in the `Fail` objects of a `LowCoverageError`.
+
 <a name="v0.7.0"></a>
 ## [v0.7.0](https://github.com/origin-1/c8js/releases/tag/v0.7.0) (2024-04-24)
 
