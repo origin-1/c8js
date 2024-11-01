@@ -2,6 +2,7 @@
     "compilerOptions": {
         "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
+        "noUncheckedSideEffectImports": true,
         "strict": true
     },
     "include": [

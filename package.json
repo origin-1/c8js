@@ -33,7 +33,7 @@
     "@types/istanbul-lib-coverage": "2",
     "@types/node": ">=16",
     "c8": ">=8 <=10.1.2",
-    "which": "4.0.0"
+    "which": "5.0.0"
   },
   "devDependencies": {
     "@origin-1/eslint-config": "latest",
