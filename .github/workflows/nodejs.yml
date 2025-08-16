@@ -2,10 +2,10 @@ name: Node.js CI
 
 on:
   push:
-    branches-ignore: docs
-    tags-ignore: '**'
+    branches-ignore: [docs]
+    tags-ignore: ['**']
   pull_request:
-    branches-ignore: docs
+    branches-ignore: [docs]
 
 jobs:
 
@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
-        node-version: '22'
+        node-version: '24'
     - run: |
         npm install
         npm run lint
@@ -32,7 +32,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['16.0.0', '16', '18', '20', '22', '23']
+        node-version: ['16.0.0', '16', '18', '20', '22', '24']
         runs-on: [ubuntu-latest]
         include:
         - node-version: '16.0.0'
@@ -40,13 +40,13 @@ jobs:
           runs-on: macos-latest
         - node-version: '16.0.0'
           runs-on: windows-latest
-        - node-version: '23'
+        - node-version: '24'
           runs-on: macos-latest
-        - node-version: '23'
+        - node-version: '24'
           runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
@@ -62,10 +62,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
-        node-version: '22'
+        node-version: '24'
     - run: |
         npm install
         npm run make-docs -- --no-gitignore
@@ -85,8 +85,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/download-artifact@v4
+    - uses: actions/checkout@v5
+    - uses: actions/download-artifact@v5
       with:
         name: docs
         path: docs
