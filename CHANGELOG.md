@@ -1,3 +1,8 @@
+<a name="v0.8.1"></a>
+## [v0.8.1](https://github.com/origin-1/c8js/releases/tag/v0.8.1) (2025-09-04)
+
+* Added support for c8 v.10.1.3.
+
 <a name="v0.8.0"></a>
 ## [v0.8.0](https://github.com/origin-1/c8js/releases/tag/v0.8.0) (2024-07-25)
 
