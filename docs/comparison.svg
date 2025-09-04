@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg">
+
+    <style>
+        :root
+        {
+            --bg-color: #F3F6FA;
+            --main-color: #159957;
+        }
+        .arrow-caption
+        {
+            font-size: 4px;
+        }
+        .arrow-caption :first-child
+        {
+            fill: none;
+            filter: url(#solid);
+        }
+        .arrow-caption :last-child
+        {
+            fill: #567482;
+        }
+        .node g
+        {
+            transform: translate(50%, 50%);
+        }
+        .node rect
+        {
+            fill: var(--bg-color);
+            height: calc(100% - .5px);
+            stroke: var(--main-color);
+            stroke-width: .5px;
+            transform: translate(.25px, .25px);
+            width: calc(100% - .5px);
+        }
+        .node text
+        {
+            fill: black;
+            font-size: 4.5px;
+        }
+        .title
+        {
+            fill: var(--main-color);
+            font-size: 6px;
+            font-weight: bold;
+        }
+        feFlood
+        {
+            flood-color: var(--bg-color);
+        }
+        line
+        {
+            marker-end: url(#arrow);
+            stroke: black;
+            stroke-width: .5px;
+        }
+        text
+        {
+            dominant-baseline: middle;
+            font-family: sans-serif;
+            text-anchor: middle;
+        }
+    </style>
+
+    <filter x="0" y="0" width="1" height="1" id="solid">
+        <feComposite in="SourceGraphic"/>
+        <feFlood />
+    </filter>
+
+    <marker
+        id="arrow"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+        refY="5"
+        viewBox="0 0 10 10">
+        <path d="M 0 0L10 5L0 10Z" />
+    </marker>
+
+    <rect width="100%" height="100%" fill="white" />
+
+    <svg x="10" width="100" height="100%" viewBox="-50 0 100 90">
+        <text class="title" y="10">without c8js</text>
+        <svg class="node" x="-25.63" y="20" width="51.26" height="10">
+            <rect rx="2"/>
+            <g>
+                <text textLength="41.25">Build runner process</text>
+            </g>
+        </svg>
+        <line y1="30" y2="47" />
+        <g class="arrow-caption" transform="translate(0, 40)">
+            <text aria-hidden="true">runs c8</text>
+            <text>runs c8</text>
+        </g>
+        <svg class="node" x="-30.63" y="50" width="61.26" height="10">
+            <rect rx="2"/>
+            <g>
+                <text textLength="51.25">Instrumenter process (c8)</text>
+            </g>
+        </svg>
+        <line y1="60" y2="67" />
+        <svg class="node" x="-38.51" y="70" width="77.02" height="10">
+            <rect rx="2"/>
+            <g>
+                <text textLength="67.01">Instrumentee/Test runner process</text>
+            </g>
+        </svg>
+    </svg>
+
+    <svg x="110" width="100" height="100%" viewBox="-50 0 100 90">
+        <text class="title" y="10">with c8js</text>
+        <svg class="node" x="-25.63" y="20" width="51.26" height="10">
+            <rect rx="2"/>
+            <g>
+                <text textLength="41.25">Build runner process</text>
+            </g>
+        </svg>
+        <line y1="30" y2="47" />
+        <g class="arrow-caption" transform="translate(0, 40)">
+            <text aria-hidden="true">calls c8js</text>
+            <text>calls c8js</text>
+        </g>
+        <svg class="node" x="-38.51" y="50" width="77.02" height="10">
+            <rect rx="2"/>
+            <g>
+                <text textLength="67.01">Instrumentee/Test runner process</text>
+            </g>
+        </svg>
+    </svg>
+
+</svg>
