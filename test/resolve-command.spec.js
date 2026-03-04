@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import assert           from 'node:assert/strict';
 import resolveCommand   from '../lib/resolve-command.js';
 

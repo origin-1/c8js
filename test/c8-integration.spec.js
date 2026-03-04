@@ -9,8 +9,6 @@ The following tests are not included:
 * "report supports reporting on single directories outside cwd" (not applicable)
 */
 
-/* eslint-env mocha */
-
 import assert                                                   from 'node:assert/strict';
 import { readFile, writeFile }                                  from 'node:fs/promises';
 import { createRequire }                                        from 'node:module';

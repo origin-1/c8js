@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import { createTempDirectory, joinPath }    from './utils.js';
 import assert                               from 'node:assert/strict';
 import { createRequire }                    from 'node:module';

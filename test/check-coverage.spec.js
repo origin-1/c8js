@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import assert                               from 'node:assert/strict';
 import { realpath, writeFile }              from 'node:fs/promises';
 import { join }                             from 'node:path';

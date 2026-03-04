@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
         node-version: '24'
     - run: |
@@ -32,27 +32,27 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['16.0.0', '16', '18', '20', '22', '24']
+        node-version: ['20.19.0', '20', '22.13.0', '22', '24', 'latest']
         runs-on: [ubuntu-latest]
         include:
-        - node-version: '16.0.0'
+        - node-version: '20.19.0'
           architecture: x64
           runs-on: macos-latest
-        - node-version: '16.0.0'
+        - node-version: '20.19.0'
           runs-on: windows-latest
-        - node-version: '24'
+        - node-version: 'latest'
           runs-on: macos-latest
-        - node-version: '24'
+        - node-version: 'latest'
           runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
         architecture: ${{ matrix.architecture }}
     - run: |
-        npm install --legacy-peer-deps
+        npm install
         npm test
 
   make-docs:
@@ -62,14 +62,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
       with:
         node-version: '24'
     - run: |
         npm install
         npm run make-docs -- --no-gitignore
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: docs
         path: docs
@@ -85,8 +85,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
-    - uses: actions/download-artifact@v5
+    - uses: actions/checkout@v6
+    - uses: actions/download-artifact@v8
       with:
         name: docs
         path: docs
