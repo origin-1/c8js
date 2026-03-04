@@ -1,3 +1,10 @@
+<a name="v0.9.0"></a>
+## [v0.9.0](https://github.com/origin-1/c8js/releases/tag/v0.9.0) (2026-03-04)
+
+* Dropped support for older Node.js versions. Supported Node.js versions are now `^20.19.0 || ^22.13.0 || >=24`.
+* Expanded c8js compatibility to all c8 versions starting from 8.0.0.
+* Patched an issue that is causing c8 to crash in Node.js 25.7.0 and newer.
+
 <a name="v0.8.1"></a>
 ## [v0.8.1](https://github.com/origin-1/c8js/releases/tag/v0.8.1) (2025-09-04)
 
