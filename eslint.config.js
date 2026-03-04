@@ -1,7 +1,7 @@
-import { createFlatConfig } from '@origin-1/eslint-config';
-import globals              from 'globals';
+import { createConfig } from '@origin-1/eslint-config';
+import globals          from 'globals';
 
-export default createFlatConfig
+export default createConfig
 (
     {
         ignores: ['**/.*', 'coverage', 'test/fixtures', 'tmp'],
@@ -11,9 +11,8 @@ export default createFlatConfig
         jsVersion:  2021,
     },
     {
-        files:              ['**/*.ts'],
-        tsVersion:          'latest',
-        languageOptions:    { parserOptions: { project: 'tsconfig.json' } },
+        files:      ['**/*.ts'],
+        tsVersion:  'latest',
     },
     {
         languageOptions: { globals: { ...globals.nodeBuiltin } },

@@ -3,7 +3,8 @@
         "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
         "noUncheckedSideEffectImports": true,
-        "strict": true
+        "strict": true,
+        "useUnknownInCatchVariables": true
     },
     "include": [
         "lib",
