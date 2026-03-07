@@ -47,8 +47,7 @@
   },
   "overrides": {
     "c8": {
-      "foreground-child": "file:../_EXCLUDED_",
-      "yargs": "^18.0.0"
+      "foreground-child": "file:../_EXCLUDED_"
     }
   },
   "engines": {
