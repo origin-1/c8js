@@ -1,3 +1,8 @@
+<a name="v0.9.1"></a>
+## [v0.9.1](https://github.com/origin-1/c8js/releases/tag/v0.9.1) (2026-03-08)
+
+* Improved compatibility across package managers.
+
 <a name="v0.9.0"></a>
 ## [v0.9.0](https://github.com/origin-1/c8js/releases/tag/v0.9.0) (2026-03-04)
 
