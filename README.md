@@ -6,7 +6,7 @@ A modern, asynchronous Node.js API for [c8](https://github.com/bcoe/c8).
 
 c8 leverages Node.js built-in [V8 JavaScript code coverage](https://v8.dev/blog/javascript-code-coverage) to produce [Istanbul](https://istanbul.js.org/)-compatible reports.
 
-c8js offers a usable API to access all c8 commands programmatically in Node.js with JavaScript functions.
+c8js offers a convenient API to access all c8 commands programmatically in Node.js with JavaScript functions.
 
 c8js is not a wrapper around the command line interface: it calls c8 library functions in the current thread instead of spawning an instrumenter process.
 
@@ -136,7 +136,7 @@ await createCoverage({ src: ['lib', 'src/app'], timeout: 300 * 1000 });
 
 ## Compatibility
 
-c8js requires Node.js 16 or later.
+c8js requires Node.js `^20.19.0 || ^22.13.0 || >=24`.
 The minimum supported c8 version is 8.0.0.
 
 [npm badge]: https://img.shields.io/npm/v/c8js?logo=npm
